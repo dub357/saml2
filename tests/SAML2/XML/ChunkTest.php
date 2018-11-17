@@ -41,7 +41,7 @@ class ChunkTest extends \PHPUnit_Framework_TestCase
      */
     public function testChunkGetXML()
     {
-        $xml = $this->chunk->getXML();
+        $xml = $this->chunk->xml;
         $this->assertInstanceOf('DOMElement', $xml);
         $this->assertEquals('saml:Attribute', $xml->tagName);
     }
@@ -57,7 +57,6 @@ class ChunkTest extends \PHPUnit_Framework_TestCase
         $newchunk = new Chunk($document->firstChild);
         $newchunk->unserialize($ser);
 
-        $this->assertEqualXMLStructure($this->chunk->getXML(), $newchunk->getXML());
+        $this->assertEqualXMLStructure($this->chunk->xml, $newchunk->xml);
     }
-
 }

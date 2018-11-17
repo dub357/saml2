@@ -13,12 +13,12 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
     public function testXpQuery()
     {
         $aq = new AttributeQuery();
-        $aq->setNameID([
-            'Value' => 'NameIDValue',
-            'Format' => 'SomeNameIDFormat',
-            'NameQualifier' => 'OurNameQualifier',
-            'SPNameQualifier' => 'TheSPNameQualifier',
-        ]);
+        $nameId = new \SAML2\XML\saml\NameID();
+        $nameId->Value = 'NameIDValue';
+        $nameId->Format = 'SomeNameIDFormat';
+        $nameId->NameQualifier = 'OurNameQualifier';
+        $nameId->SPNameQualifier = 'TheSPNameQualifier';
+        $aq->setNameID($nameId);
 
         $xml = $aq->toUnsignedXML();
 

@@ -728,7 +728,7 @@ class AuthnRequest extends Request
             $scoping = $this->document->createElementNS(Constants::NS_SAMLP, 'Scoping');
             $root->appendChild($scoping);
             if ($this->ProxyCount !== null) {
-                $scoping->setAttribute('ProxyCount', $this->ProxyCount);
+                $scoping->setAttribute('ProxyCount', (string) $this->ProxyCount);
             }
             if (count($this->IDPList) > 0) {
                 $idplist = $this->document->createElementNS(Constants::NS_SAMLP, 'IDPList');

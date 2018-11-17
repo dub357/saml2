@@ -133,7 +133,10 @@ AUTHNREQUEST;
     public function testThatTheSubjectCanBeSetBySettingTheNameId()
     {
         $request = new AuthnRequest();
-        $request->setNameId(['Value' => 'user@example.org', 'Format' => Constants::NAMEID_UNSPECIFIED]);
+        $nameId = new XML\saml\NameID();
+        $nameId->Value = 'user@example.org';
+        $nameId->Format = Constants::NAMEID_UNSPECIFIED;
+        $request->setNameId($nameId);
 
         $requestAsXML = $request->toUnsignedXML()->ownerDocument->saveXML();
         $expected = '<saml:Subject><saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">user@example.org</saml:NameID></saml:Subject>';
@@ -190,7 +193,9 @@ AUTHNREQUEST;
     public function testThatAnEncryptedNameIdResultsInTheCorrectXmlStructure()
     {
         // the NameID we're going to encrypt
-        $nameId = ['Value' => md5('Arthur Dent'), 'Format' => Constants::NAMEID_ENCRYPTED];
+        $nameId = new XML\saml\NameID();
+        $nameId->Value = md5('Arthur Dent');
+        $nameId->Format = Constants::NAMEID_ENCRYPTED;
 
         // basic AuthnRequest
         $request = new AuthnRequest();

@@ -83,8 +83,8 @@ class Logo
 
         $e = $doc->createElementNS(Common::NS, 'mdui:Logo');
         $e->appendChild($doc->createTextNode($this->url));
-        $e->setAttribute('width', (int) $this->width);
-        $e->setAttribute('height', (int) $this->height);
+        $e->setAttribute('width', (string) $this->width);
+        $e->setAttribute('height', (string) $this->height);
         if (isset($this->lang)) {
             $e->setAttribute('xml:lang', $this->lang);
         }

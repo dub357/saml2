@@ -90,11 +90,11 @@ class MockContainer extends AbstractContainer
     /**
      * Trigger the user to perform a POST to the given URL with the given data.
      *
-     * @param string $url
+     * @param string|null $url
      * @param array $data
      * @return void
      */
-    public function postRedirect(string $url, array $data = [])
+    public function postRedirect(string $url = null, array $data = [])
     {
         $this->postRedirectUrl = $url;
         $this->postRedirectData = $data;

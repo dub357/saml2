@@ -17,18 +17,6 @@ class KeyTest extends \PHPUnit_Framework_TestCase
         $key->canBeUsedFor('foo');
     }
 
-    /**
-     * @group certificate
-     *
-     * @test
-     * @expectedException \SAML2\Exception\InvalidArgumentException
-     */
-    public function invalid_offset_type_should_throw_an_exception()
-    {
-        $key = new Key([Key::USAGE_SIGNING => true]);
-        $key->offsetGet(0);
-    }
-
 
     /**
      * @group certificate

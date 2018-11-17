@@ -91,7 +91,7 @@ class SignatureValidationTest extends \PHPUnit_Framework_TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testThatAnSignedResponseWithAnUnsignedAssertionCanBeProcessed()
+    public function testThatASignedResponseWithAnUnsignedAssertionCanBeProcessed()
     {
         $this->assertionProcessor->shouldReceive('processAssertions')->once();
 

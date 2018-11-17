@@ -18,7 +18,7 @@ class AssertionTest extends \PHPUnit_Framework_TestCase
         $assertion = new Assertion();
         $assertion->setIssuer('testIssuer');
         $assertion->setValidAudiences(['audience1', 'audience2']);
-        $assertion->setAuthnContext('someAuthnContext');
+        $assertion->setAuthnContextClassRef('someAuthnContext');
 
         // Marshall it to a \DOMElement
         $assertionElement = $assertion->toXML();
@@ -106,7 +106,7 @@ XML;
 
         $this->assertNull($assertion->getAuthnContextClassRef());
 
-        $assertion->setAuthnContext('someAuthnContext');
+        $assertion->setAuthnContextClassRef('someAuthnContext');
         $assertion->setAuthnContextDeclRef('/relative/path/to/document.xml');
 
         $assertion->setID("_123abc");
@@ -167,12 +167,12 @@ XML;
         $assertion->setIssuer('testIssuer');
         $assertion->setValidAudiences(['audience1', 'audience2']);
 
-        $assertion->setAuthnContext('someAuthnContext');
+        $assertion->setAuthnContextClassRef('someAuthnContext');
 
         $assertion->setAuthenticatingAuthority(["idp1", "idp2"]);
 
         $assertion->setAttributes([
-            "name1" => ["value1",123,"2017-31-12"],
+            "name1" => ["value1", 123, "2017-31-12"],
             "name2" => [2],
             "name3" => [1234, "+2345"]
         ]);
@@ -230,7 +230,7 @@ XML;
         $assertion->setIssuer('testIssuer');
         $assertion->setValidAudiences(['audience1', 'audience2']);
 
-        $assertion->setAuthnContext('someAuthnContext');
+        $assertion->setAuthnContextClassRef('someAuthnContext');
 
         $assertion->setAuthenticatingAuthority(["idp1", "idp2"]);
 
@@ -283,7 +283,7 @@ XML;
         $authnContextDecl = $assertion->getAuthnContextDecl();
         $this->assertNotEmpty($authnContextDecl);
         $this->assertEquals('AuthnContextDecl', $authnContextDecl->localName);
-        $childLocalName = $authnContextDecl->getXML()->childNodes->item(1)->localName;
+        $childLocalName = $authnContextDecl->xml->childNodes->item(1)->localName;
         $this->assertEquals('AuthenticationContextDeclaration', $childLocalName);
 
         $this->assertEquals('someAuthnContext', $assertion->getAuthnContextClassRef());
@@ -747,66 +747,6 @@ XML;
         $this->assertXmlStringEqualsXmlString($xml, $assertion->toXML()->ownerDocument->saveXML());
     }
 
-    public function testEptiLegacyAttributeValuesCanBeString()
-    {
-        $xml = <<<XML
-            <saml:Assertion
-                    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-                    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-                    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    Version="2.0"
-                    ID="_93af655219464fb403b34436cfb0c5cb1d9a5502"
-                    IssueInstant="1970-01-01T01:33:31Z">
-      <saml:Issuer>Provider</saml:Issuer>
-      <saml:Conditions/>
-      <saml:AttributeStatement>
-        <saml:Attribute Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
-          <saml:AttributeValue xsi:type="xs:string">string</saml:AttributeValue>
-        </saml:Attribute>
-        <saml:Attribute Name="urn:mace:dir:attribute-def:eduPersonTargetedID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
-          <saml:AttributeValue xsi:type="xs:string">string</saml:AttributeValue>
-        </saml:Attribute>
-        <saml:Attribute Name="urn:EntityConcernedSubID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
-          <saml:AttributeValue xsi:type="xs:string">string</saml:AttributeValue>
-        </saml:Attribute>
-      </saml:AttributeStatement>
-    </saml:Assertion>
-XML;
-        $xml = <<<XML
-            <saml:Assertion
-                    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-                    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-                    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    Version="2.0"
-                    ID="_93af655219464fb403b34436cfb0c5cb1d9a5502"
-                    IssueInstant="1970-01-01T01:33:31Z">
-      <saml:Issuer>Provider</saml:Issuer>
-      <saml:Conditions/>
-      <saml:AttributeStatement>
-        <saml:Attribute Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
-          <saml:AttributeValue xsi:type="xs:string">string-12</saml:AttributeValue>
-        </saml:Attribute>
-        <saml:Attribute Name="urn:mace:dir:attribute-def:eduPersonTargetedID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
-          <saml:AttributeValue xsi:type="xs:string">string-23</saml:AttributeValue>
-        </saml:Attribute>
-        <saml:Attribute Name="urn:EntityConcernedSubID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
-            <saml:AttributeValue xsi:type="xs:string">string</saml:AttributeValue>
-        </saml:Attribute>
-      </saml:AttributeStatement>
-    </saml:Assertion>
-XML;
-
-        $assertion = new Assertion(DOMDocumentFactory::fromString($xml)->firstChild);
-        $attributes = $assertion->getAttributes();
-        $maceValue = $attributes['urn:mace:dir:attribute-def:eduPersonTargetedID'][0];
-        $oidValue = $attributes['urn:oid:1.3.6.1.4.1.5923.1.1.1.10'][0];
-        $this->assertInstanceOf('SAML2\XML\saml\NameID', $maceValue);
-        $this->assertInstanceOf('SAML2\XML\saml\NameID', $oidValue);
-        $this->assertEquals('string-23', $maceValue->value);
-        $this->assertEquals('string-12', $oidValue->value);
-    }
 
     /**
      * as per http://software.internet2.edu/eduperson/internet2-mace-dir-eduperson-201310.html#eduPersonTargetedID
@@ -1806,12 +1746,13 @@ XML;
         $assertion = new Assertion();
         $assertion->setIssuer('testIssuer');
         $assertion->setValidAudiences(['audience1', 'audience2']);
-        $assertion->setAuthnContext('someAuthnContext');
+        $assertion->setAuthnContextClassRef('someAuthnContext');
 
-        $assertion->setNameId([
-            "Value" => "just_a_basic_identifier",
-            "Format" => "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
-        ]);
+        $nameId = new XML\saml\NameID();
+        $nameId->Value = "just_a_basic_identifier";
+        $nameId->Format = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient";
+
+        $assertion->setNameId($nameId);
         $this->assertFalse($assertion->isNameIdEncrypted());
 
         $publicKey = CertificatesMock::getPublicKey();
