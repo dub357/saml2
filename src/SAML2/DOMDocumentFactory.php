@@ -31,7 +31,7 @@ final class DOMDocumentFactory
 
         $domDocument = self::create();
         $options     = LIBXML_DTDLOAD | LIBXML_DTDATTR | LIBXML_NONET;
-        if (defined(LIBXML_COMPACT)) {
+        if (defined('LIBXML_COMPACT')) {
             $options |= LIBXML_COMPACT;
         }
 

@@ -17,7 +17,7 @@ class KeyCollection extends ArrayCollection
      *
      * @param \SAML2\Certificate\Key $key
      */
-    public function add(Key $key)
+    public function add($key)
     {
         parent::add($key);
     }

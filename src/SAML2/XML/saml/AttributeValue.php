@@ -120,7 +120,7 @@ class AttributeValue implements \Serializable
      *
      * @param string $serialized The serialized AttributeValue.
      */
-    public function unserialize(string $serialized)
+    public function unserialize($serialized)
     {
         $doc = DOMDocumentFactory::fromString(unserialize($serialized));
         $this->element = $doc->documentElement;

@@ -23,6 +23,9 @@ class ArrayCollection implements Collection
         $this->elements = $elements;
     }
 
+    /**
+     * @param mixed $element
+     */
     public function add($element)
     {
         $this->elements[] = $element;

@@ -9,7 +9,7 @@ interface Collection extends \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Add an element to the collection
      *
-     * @param $element
+     * @param mixed $element
      *
      * @return $this|\SAML2\Utilities\Collection
      */

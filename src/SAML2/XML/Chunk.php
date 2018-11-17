@@ -83,9 +83,9 @@ class Chunk implements \Serializable
     /**
      * Un-serialize this XML chunk.
      *
-     * @param string          $serialized The serialized chunk.
+     * @param mixed          $serialized The serialized chunk.
      */
-    public function unserialize(string $serialized)
+    public function unserialize($serialized)
     {
         $doc = DOMDocumentFactory::fromString(unserialize($serialized));
         $this->xml = $doc->documentElement;

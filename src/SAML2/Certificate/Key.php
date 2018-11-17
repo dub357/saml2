@@ -63,7 +63,7 @@ class Key implements \ArrayAccess
     /**
      * @param string $offset
      */
-    public function offsetExists(string $offset)
+    public function offsetExists($offset)
     {
         return array_key_exists($offset, $this->keyData);
     }
@@ -71,7 +71,7 @@ class Key implements \ArrayAccess
     /**
      * @param string $offset
      */
-    public function offsetGet(string $offset)
+    public function offsetGet($offset)
     {
         return $this->keyData[$offset];
     }
@@ -80,7 +80,7 @@ class Key implements \ArrayAccess
      * @param string $offset
      * @param mixed $value
      */
-    public function offsetSet(string $offset, $value)
+    public function offsetSet($offset, $value)
     {
         $this->keyData[$offset] = $value;
     }
@@ -88,7 +88,7 @@ class Key implements \ArrayAccess
     /**
      * @param string $offset
      */
-    public function offsetUnset(string $offset)
+    public function offsetUnset($offset)
     {
         unset($this->keyData[$offset]);
     }

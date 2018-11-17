@@ -32,7 +32,7 @@ class X509 extends Key
     /**
      * {@inheritdoc} Best place to ensure the logic is encapsulated in a single place
      */
-    public function offsetSet(string $offset, $value)
+    public function offsetSet($offset, $value)
     {
         if ($offset === 'X509Certificate') {
             $value = preg_replace('~\s+~', '', $value);
