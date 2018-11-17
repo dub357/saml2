@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\XML\md;
 
 use SAML2\Constants;
@@ -10,8 +12,6 @@ use SAML2\XML\mdattr\EntityAttributes;
 use SAML2\XML\mdrpi\Common as MDRPI;
 use SAML2\XML\mdui\Common as MDUI;
 use SAML2\XML\shibmd\Scope;
-
-declare(strict_types=1);
 
 /**
  * Class for handling SAML2 metadata extensions.

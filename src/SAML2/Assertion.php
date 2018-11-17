@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2;
 
 use RobRichards\XMLSecLibs\XMLSecEnc;
@@ -8,8 +10,6 @@ use SAML2\Exception\RuntimeException;
 use SAML2\Utilities\Temporal;
 use SAML2\XML\Chunk;
 use SAML2\XML\saml\SubjectConfirmation;
-
-declare(strict_types=1);
 
 /**
  * Class representing a SAML 2 assertion.

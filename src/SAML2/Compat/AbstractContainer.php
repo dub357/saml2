@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2\Compat;
-
 declare(strict_types=1);
+
+namespace SAML2\Compat;
 
 abstract class AbstractContainer
 {

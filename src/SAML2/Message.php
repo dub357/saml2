@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Utilities\Temporal;
 use SAML2\XML\samlp\Extensions;
-
-declare(strict_types=1);
 
 /**
  * Base class for all SAML 2 messages.

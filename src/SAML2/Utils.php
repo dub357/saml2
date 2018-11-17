@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2;
 
 use RobRichards\XMLSecLibs\XMLSecEnc;
@@ -11,8 +13,6 @@ use SAML2\XML\ds\KeyInfo;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
 use SAML2\XML\md\KeyDescriptor;
-
-declare(strict_types=1);
 
 /**
  * Helper functions for the SAML2 library.

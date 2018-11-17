@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Assertion\Validation\ConstraintValidator;
 
 use SAML2\Assertion;
 use SAML2\Assertion\Validation\AssertionConstraintValidator;
 use SAML2\Assertion\Validation\Result;
 use SAML2\Utilities\Temporal;
-
-declare(strict_types=1);
 
 class SessionNotOnOrAfter implements
     AssertionConstraintValidator

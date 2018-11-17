@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2\Utilities;
-
 declare(strict_types=1);
+
+namespace SAML2\Utilities;
 
 class Temporal
 {

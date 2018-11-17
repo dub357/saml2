@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\XML\mdrpi;
 
 use SAML2\Utils;
-
-declare(strict_types=1);
 
 /**
  * Class for handling the mdrpi:PublicationInfo element.

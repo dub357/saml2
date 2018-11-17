@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2\XML\alg;
-
 declare(strict_types=1);
+
+namespace SAML2\XML\alg;
 
 /**
  * Class for handling the alg:DigestMethod element.

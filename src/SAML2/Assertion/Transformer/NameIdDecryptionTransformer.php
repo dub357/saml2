@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Assertion\Transformer;
 
 use Psr\Log\LoggerInterface;
@@ -10,8 +12,6 @@ use SAML2\Configuration\IdentityProvider;
 use SAML2\Configuration\IdentityProviderAware;
 use SAML2\Configuration\ServiceProvider;
 use SAML2\Configuration\ServiceProviderAware;
-
-declare(strict_types=1);
 
 class NameIdDecryptionTransformer implements
     Transformer,

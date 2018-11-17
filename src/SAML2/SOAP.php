@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2;
 
 use DOMDocument;
 use SAML2\XML\ecp\Response as ECPResponse;
-
-declare(strict_types=1);
 
 /**
  * Class which implements the SOAP binding.

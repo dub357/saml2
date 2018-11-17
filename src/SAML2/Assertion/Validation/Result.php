@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Assertion\Validation;
 
 use SAML2\Exception\InvalidArgumentException;
-
-declare(strict_types=1);
 
 /**
  * Simple Result object

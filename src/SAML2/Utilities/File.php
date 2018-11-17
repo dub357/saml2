@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Utilities;
 
 use SAML2\Exception\InvalidArgumentException;
 use SAML2\Exception\RuntimeException;
-
-declare(strict_types=1);
 
 /**
  * Various File Utilities

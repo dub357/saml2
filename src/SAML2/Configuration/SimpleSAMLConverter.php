@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Configuration;
 
 use \SimpleSAML\Configuration;
-
-declare(strict_types=1);
 
 /**
  * Backwards compatibility helper for SimpleSAMLphp

@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Assertion\Transformer;
 
 use SAML2\Assertion;
 use SAML2\Configuration\IdentityProvider;
 use SAML2\Configuration\IdentityProviderAware;
-
-declare(strict_types=1);
 
 class DecodeBase64Transformer implements
     Transformer,

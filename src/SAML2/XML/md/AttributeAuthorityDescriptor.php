@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\XML\md;
 
 use SAML2\Constants;
 use SAML2\Utils;
 use SAML2\XML\saml\Attribute;
-
-declare(strict_types=1);
 
 /**
  * Class representing SAML 2 metadata AttributeAuthorityDescriptor.

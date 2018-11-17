@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2\Compat;
-
 declare(strict_types=1);
+
+namespace SAML2\Compat;
 
 /**
  * Class \SAML2\Compat\MockContainer

@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Utilities;
 
 use SAML2\Exception\RuntimeException;
-
-declare(strict_types=1);
 
 /**
  * Simple Array implementation of Collection.

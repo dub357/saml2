@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Compat\Ssp;
 
 use SAML2\Compat\AbstractContainer;
 use \SimpleSAML\Utilities;
-
-declare(strict_types=1);
 
 class Container extends AbstractContainer
 {

@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Exception\RuntimeException;
 use \SimpleSAML\Configuration;
 use \SimpleSAML\Utilities;
-
-declare(strict_types=1);
 
 /**
  * Implementation of the SAML 2.0 SOAP binding.

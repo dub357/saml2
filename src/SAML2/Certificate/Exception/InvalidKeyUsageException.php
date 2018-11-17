@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Certificate\Exception;
 
 use SAML2\Certificate\Key;
 use SAML2\Exception\Throwable;
-
-declare(strict_types=1);
 
 /**
  * Named exception for when a non-existent key-usage is given

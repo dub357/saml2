@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Certificate;
 
 use SAML2\Exception\InvalidArgumentException;
-
-declare(strict_types=1);
 
 class PrivateKey extends Key
 {

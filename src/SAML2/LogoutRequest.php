@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2;
 
 use RobRichards\XMLSecLibs\XMLSecEnc;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-
-declare(strict_types=1);
 
 /**
  * Class for SAML 2 logout request messages.

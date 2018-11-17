@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Certificate;
 
 use SAML2\Configuration\CertificateProvider;
 use SAML2\Exception\InvalidArgumentException;
-
-declare(strict_types=1);
 
 /**
  * @deprecated Please load full certificates instead.

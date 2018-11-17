@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\XML\saml;
 
 use SAML2\Constants;
 use SAML2\DOMDocumentFactory;
 use SAML2\Utils;
-
-declare(strict_types=1);
 
 /**
  * Serializable class representing an AttributeValue.

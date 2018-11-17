@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Compat\Ssp;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-
-declare(strict_types=1);
 
 class Logger implements LoggerInterface
 {

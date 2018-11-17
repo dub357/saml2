@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Signature;
 
 use Psr\Log\LoggerInterface;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\SignedElement;
-
-declare(strict_types=1);
 
 abstract class AbstractChainedValidator implements ChainedValidator
 {

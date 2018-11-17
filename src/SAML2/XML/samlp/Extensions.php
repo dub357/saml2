@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\XML\samlp;
 
 use SAML2\Constants;
 use SAML2\Utils;
 use SAML2\XML\Chunk;
-
-declare(strict_types=1);
 
 /**
  * Class for handling SAML2 extensions.

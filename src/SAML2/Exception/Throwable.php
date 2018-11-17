@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2\Exception;
-
 declare(strict_types=1);
+
+namespace SAML2\Exception;
 
 /**
  * Interface \SAML2\Exception\ExceptionInterface

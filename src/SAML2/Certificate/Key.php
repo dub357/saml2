@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Certificate;
 
 use SAML2\Certificate\Exception\InvalidKeyUsageException;
 use SAML2\Exception\InvalidArgumentException;
-
-declare(strict_types=1);
 
 /**
  * Simple DTO wrapper for (X509) keys. Implements ArrayAccess

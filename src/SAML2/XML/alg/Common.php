@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2\XML\alg;
-
 declare(strict_types=1);
+
+namespace SAML2\XML\alg;
 
 /**
  * Common definitions for the algsupport metadata extension.

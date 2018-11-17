@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2\Configuration;
-
 declare(strict_types=1);
+
+namespace SAML2\Configuration;
 
 /**
  * Interface \SAML2\Configuration\Queryable

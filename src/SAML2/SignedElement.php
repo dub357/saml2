@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-
-declare(strict_types=1);
 
 /**
  * Interface to a SAML 2 element which may be signed.

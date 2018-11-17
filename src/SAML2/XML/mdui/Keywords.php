@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2\XML\mdui;
-
 declare(strict_types=1);
+
+namespace SAML2\XML\mdui;
 
 /**
  * Class for handling the Keywords metadata extensions for login and discovery user interface

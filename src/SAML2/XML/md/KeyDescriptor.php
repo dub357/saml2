@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\XML\md;
 
 use SAML2\Constants;
 use SAML2\Utils;
 use SAML2\XML\Chunk;
 use SAML2\XML\ds\KeyInfo;
-
-declare(strict_types=1);
 
 /**
  * Class representing a KeyDescriptor element.

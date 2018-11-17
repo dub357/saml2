@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
@@ -8,8 +10,6 @@ use \SimpleSAML\Configuration;
 use \SimpleSAML\Metadata\MetaDataStorageHandler;
 use \SimpleSAML\Store;
 use \SimpleSAML\Utilities;
-
-declare(strict_types=1);
 
 /**
  * Class which implements the HTTP-Artifact binding.

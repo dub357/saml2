@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Assertion;
 
 use Psr\Log\LoggerInterface;
@@ -23,8 +25,6 @@ use SAML2\Configuration\IdentityProvider;
 use SAML2\Configuration\ServiceProvider;
 use SAML2\Response;
 use SAML2\Signature\Validator;
-
-declare(strict_types=1);
 
 /**
  * Simple Builder that allows to build a new Assertion Processor.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Assertion;
 
 use Psr\Log\LoggerInterface;
@@ -14,8 +16,6 @@ use SAML2\Response\Exception\InvalidSignatureException;
 use SAML2\Response\Exception\UnencryptedAssertionFoundException;
 use SAML2\Signature\Validator;
 use SAML2\Utilities\ArrayCollection;
-
-declare(strict_types=1);
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects) - due to all the named exceptions

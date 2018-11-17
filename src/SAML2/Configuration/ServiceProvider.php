@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Configuration;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-
-declare(strict_types=1);
 
 /**
  * Basic Configuration Wrapper

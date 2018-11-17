@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2;
-
 declare(strict_types=1);
+
+namespace SAML2;
 
 /**
  * Class for SAML 2 LogoutResponse messages.

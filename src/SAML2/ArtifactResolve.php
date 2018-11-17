@@ -1,8 +1,8 @@
 <?php
 
-namespace SAML2;
-
 declare(strict_types=1);
+
+namespace SAML2;
 
 /**
  * The Artifact is part of the SAML 2.0 IdP code, and it builds an artifact object.

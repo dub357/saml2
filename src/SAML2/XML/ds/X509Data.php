@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\XML\ds;
 
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SAML2\XML\Chunk;
-
-declare(strict_types=1);
 
 /**
  * Class representing a ds:X509Data element.

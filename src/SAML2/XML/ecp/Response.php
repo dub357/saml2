@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\XML\ecp;
 
 use DOMElement;
 use InvalidArgumentException;
 use SAML2\Constants;
-
-declare(strict_types=1);
 
 /**
  * Class representing the ECP Response element.

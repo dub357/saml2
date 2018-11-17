@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Compat;
 
 use SAML2\Compat\Ssp\Container;
-
-declare(strict_types=1);
 
 class ContainerSingleton
 {

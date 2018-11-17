@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2\Signature;
 
 use Psr\Log\LoggerInterface;
@@ -7,8 +9,6 @@ use SAML2\Certificate\FingerprintLoader;
 use SAML2\Certificate\X509;
 use SAML2\Configuration\CertificateProvider;
 use SAML2\SignedElement;
-
-declare(strict_types=1);
 
 /**
  * Validates the signature based on the fingerprint of the certificate

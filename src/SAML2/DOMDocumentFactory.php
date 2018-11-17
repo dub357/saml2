@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SAML2;
 
 use SAML2\Exception\InvalidArgumentException;
 use SAML2\Exception\RuntimeException;
 use SAML2\Exception\UnparseableXmlException;
-
-declare(strict_types=1);
 
 final class DOMDocumentFactory
 {
