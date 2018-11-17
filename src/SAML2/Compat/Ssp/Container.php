@@ -43,7 +43,7 @@ class Container extends AbstractContainer
      */
     public function debugMessage(string $message, string $type)
     {
-        Utilities::debugMessage(string $message, string $type);
+        Utilities::debugMessage($message, $type);
     }
 
     /**

@@ -27,7 +27,7 @@ class ResponseTest extends PHPUnit_Framework_TestCase
             [false],
             [[]],
             [new stdClass],
-        );
+        ];
     }
 
     public function testToXMLReturnsResponse()

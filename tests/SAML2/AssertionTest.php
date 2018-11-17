@@ -183,8 +183,8 @@ XML;
         // second name1 value and all name2 values will use default behaviour
         $assertion->setAttributesValueTypes([
             "name1" => ["xs:string", null, "xs:date"],
-            "name3" => "xs:decimal")
-        ];
+            "name3" => "xs:decimal"
+        ]);
 
         $assertionElement = $assertion->toXML()->ownerDocument->saveXML();
 

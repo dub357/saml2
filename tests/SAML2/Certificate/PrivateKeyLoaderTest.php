@@ -45,7 +45,7 @@ class PrivateKeyLoaderTest extends \PHPUnit_Framework_TestCase
                 new PrivateKey(
                     dirname(__FILE__) . '/File/a_fake_private_key_file.pem',
                     PrivateKey::NAME_DEFAULT
-                ]
+                )
             ],
             'with passphrase' => [
                 new PrivateKey(

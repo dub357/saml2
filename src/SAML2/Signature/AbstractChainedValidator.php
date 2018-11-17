@@ -30,7 +30,7 @@ abstract class AbstractChainedValidator implements ChainedValidator
      *
      * @return bool
      */
-    protected function validateElementWithKeys(SignedElement $element, Certificate\X509[] $pemCandidates)
+    protected function validateElementWithKeys(SignedElement $element, array $pemCandidates)
     {
         $lastException = null;
         foreach ($pemCandidates as $index => $candidateKey) {
