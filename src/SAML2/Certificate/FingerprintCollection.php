@@ -5,6 +5,8 @@ namespace SAML2\Certificate;
 use SAML2\Exception\InvalidArgumentException;
 use SAML2\Utilities\ArrayCollection;
 
+declare(strict_types=1);
+
 /**
  * Simple collection object for transporting keys
  * @deprecated Please load full certificates instead.
@@ -18,7 +20,7 @@ class FingerprintCollection extends ArrayCollection
      *
      * @deprecated
      */
-    public function add($fingerprint)
+    public function add(Fingerprint $fingerprint)
     {
         if (!$fingerprint instanceof Fingerprint) {
             throw InvalidArgumentException::invalidType(

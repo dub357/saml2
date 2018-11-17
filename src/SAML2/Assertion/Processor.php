@@ -15,6 +15,8 @@ use SAML2\Response\Exception\UnencryptedAssertionFoundException;
 use SAML2\Signature\Validator;
 use SAML2\Utilities\ArrayCollection;
 
+declare(strict_types=1);
+
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects) - due to all the named exceptions
  */
@@ -78,7 +80,7 @@ class Processor
      *
      * @return \SAML2\Assertion[] Collection (\SAML2\Utilities\ArrayCollection) of processed assertions
      */
-    public function processAssertions($assertions)
+    public function processAssertions(\SAML2\Utilities\ArrayCollection $assertions)
     {
         $processed = new ArrayCollection();
         foreach ($assertions as $assertion) {

@@ -21,12 +21,8 @@ class Fingerprint
      *
      * @deprecated Please use full certificates instead.
      */
-    public function __construct($fingerPrint)
+    public function __construct(string $fingerPrint)
     {
-        if (!is_string($fingerPrint)) {
-            throw InvalidArgumentException::invalidType('string', $fingerPrint);
-        }
-
         $this->contents = $fingerPrint;
     }
 

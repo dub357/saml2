@@ -2,6 +2,8 @@
 
 namespace SAML2;
 
+declare(strict_types=1);
+
 /**
  * Various SAML 2 constants.
  *

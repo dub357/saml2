@@ -2,6 +2,8 @@
 
 namespace SAML2;
 
+declare(strict_types=1);
+
 /**
  * Base class for all SAML 2 response messages.
  *
@@ -11,11 +13,11 @@ namespace SAML2;
  * responses.
  *
  * The status code is represented as an array on the following form:
- * array(
+ * [
  *   'Code' => '<top-level status code>',
  *   'SubCode' => '<second-level status code>',
  *   'Message' => '<status message>',
- * )
+ * ]
  *
  * Only the 'Code' field is required. The others will be set to null if they
  * aren't present.
@@ -47,15 +49,15 @@ abstract class StatusResponse extends Message
      * @param \DOMElement|null $xml     The input message.
      * @throws \Exception
      */
-    protected function __construct($tagName, \DOMElement $xml = null)
+    protected function __construct(string $tagName, \DOMElement $xml = null)
     {
         parent::__construct($tagName, $xml);
 
-        $this->status = array(
+        $this->status = [
             'Code' => Constants::STATUS_SUCCESS,
             'SubCode' => null,
             'Message' => null,
-            );
+            ];
 
         if ($xml === null) {
             return;
@@ -124,10 +126,8 @@ abstract class StatusResponse extends Message
      *
      * @param string|null $inResponseTo The ID of the request.
      */
-    public function setInResponseTo($inResponseTo)
+    public function setInResponseTo(string $inResponseTo = null)
     {
-        assert(is_string($inResponseTo) || is_null($inResponseTo));
-
         $this->inResponseTo = $inResponseTo;
     }
 

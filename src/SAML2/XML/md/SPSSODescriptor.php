@@ -4,6 +4,8 @@ namespace SAML2\XML\md;
 
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 SPSSODescriptor.
  *
@@ -32,7 +34,7 @@ class SPSSODescriptor extends SSODescriptorType
      *
      * @var \SAML2\XML\md\IndexedEndpointType[]
      */
-    public $AssertionConsumerService = array();
+    public $AssertionConsumerService = [];
 
     /**
      * List of AttributeConsumingService descriptors for this SP.
@@ -41,7 +43,7 @@ class SPSSODescriptor extends SSODescriptorType
      *
      * @var \SAML2\XML\md\AttributeConsumingService[]
      */
-    public $AttributeConsumingService = array();
+    public $AttributeConsumingService = [];
 
     /**
      * Initialize a SPSSODescriptor.

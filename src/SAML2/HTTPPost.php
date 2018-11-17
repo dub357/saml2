@@ -2,6 +2,8 @@
 
 namespace SAML2;
 
+declare(strict_types=1);
+
 /**
  * Class which implements the HTTP-POST binding.
  *
@@ -38,7 +40,7 @@ class HTTPPost extends Binding
             $msgType = 'SAMLResponse';
         }
 
-        $post = array();
+        $post = [];
         $post[$msgType] = $msgStr;
 
         if ($relayState !== null) {

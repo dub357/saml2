@@ -2,6 +2,8 @@
 
 namespace SAML2\XML\mdui;
 
+declare(strict_types=1);
+
 /**
  * Common definitions for the mdui metadata extension.
  *

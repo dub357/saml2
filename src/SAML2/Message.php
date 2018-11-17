@@ -6,6 +6,8 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Utilities\Temporal;
 use SAML2\XML\samlp\Extensions;
 
+declare(strict_types=1);
+
 /**
  * Base class for all SAML 2 messages.
  *
@@ -22,7 +24,7 @@ abstract class Message implements SignedElement
      *
      * @var array
      */
-    protected $extensions = array();
+    protected $extensions = [];
     /**
      * The name of the root element of the DOM tree for the message.
      *
@@ -132,15 +134,13 @@ abstract class Message implements SignedElement
      *
      * @throws \Exception
      */
-    protected function __construct($tagName, \DOMElement $xml = null)
+    protected function __construct(string $tagName, \DOMElement $xml = null)
     {
-        assert(is_string($tagName));
         $this->tagName = $tagName;
-
         $this->id = Utils::getContainer()->generateId();
         $this->issueInstant = Temporal::getTime();
-        $this->certificates = array();
-        $this->validators = array();
+        $this->certificates = [];
+        $this->validators = [];
 
         if ($xml === null) {
             return;
@@ -200,10 +200,10 @@ abstract class Message implements SignedElement
             if ($sig !== false) {
                 $this->messageContainedSignatureUponConstruction = true;
                 $this->certificates = $sig['Certificates'];
-                $this->validators[] = array(
-                    'Function' => array('\SAML2\Utils', 'validateSignature'),
+                $this->validators[] = [
+                    'Function' => ['\SAML2\Utils', 'validateSignature'],
                     'Data' => $sig,
-                );
+                ];
                 $this->signatureMethod = $signatureMethod[0]->value;
             }
         } catch (\Exception $e) {
@@ -221,14 +221,12 @@ abstract class Message implements SignedElement
      * @param callback $function The function which should be called
      * @param mixed    $data     The data that should be included as the first parameter to the function
      */
-    public function addValidator($function, $data)
+    public function addValidator(callable $function, $data)
     {
-        assert(is_callable($function));
-
-        $this->validators[] = array(
+        $this->validators[] = [
             'Function' => $function,
             'Data' => $data,
-        );
+        ];
     }
 
     /**
@@ -250,7 +248,7 @@ abstract class Message implements SignedElement
             return false;
         }
 
-        $exceptions = array();
+        $exceptions = [];
 
         foreach ($this->validators as $validator) {
             $function = $validator['Function'];
@@ -285,10 +283,8 @@ abstract class Message implements SignedElement
      *
      * @param string $id The new identifier of this message
      */
-    public function setId($id)
+    public function setId(string $id)
     {
-        assert(is_string($id));
-
         $this->id = $id;
     }
 
@@ -307,10 +303,8 @@ abstract class Message implements SignedElement
      *
      * @param int $issueInstant The new issue timestamp of this message, as an UNIX timestamp
      */
-    public function setIssueInstant($issueInstant)
+    public function setIssueInstant(int $issueInstant)
     {
-        assert(is_int($issueInstant));
-
         $this->issueInstant = $issueInstant;
     }
 
@@ -329,10 +323,8 @@ abstract class Message implements SignedElement
      *
      * @param string|null $destination The new destination of this message
      */
-    public function setDestination($destination)
+    public function setDestination(string $destination = null)
     {
-        assert(is_string($destination) || is_null($destination));
-
         $this->destination = $destination;
     }
 
@@ -345,10 +337,8 @@ abstract class Message implements SignedElement
      *
      * @param string $consent
      */
-    public function setConsent($consent)
+    public function setConsent(string $consent)
     {
-        assert(is_string($consent));
-
         $this->consent = $consent;
     }
 
@@ -417,10 +407,8 @@ abstract class Message implements SignedElement
      *
      * @param string|null $relayState The new RelayState
      */
-    public function setRelayState($relayState)
+    public function setRelayState(string $relayState = null)
     {
-        assert(is_string($relayState) || is_null($relayState));
-
         $this->relayState = $relayState;
     }
 
@@ -599,12 +587,9 @@ abstract class Message implements SignedElement
      *
      * @param array|null $extensions The Extensions
      */
-    public function setExtensions($extensions)
+    public function setExtensions(array $extensions = null)
     {
-        assert(is_array($extensions) || is_null($extensions));
-        if (is_array($extensions)) {
-            $this->extensions = $extensions;
-        }
+        $this->extensions = $extensions;
     }
 
     /**

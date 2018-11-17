@@ -2,6 +2,8 @@
 
 namespace SAML2;
 
+declare(strict_types=1);
+
 /**
  * The Artifact is part of the SAML 2.0 IdP code, and it builds an artifact object.
  * I am using strings, because I find them easier to work with.
@@ -39,9 +41,8 @@ class ArtifactResolve extends Request
      *
      * @param string $artifact
      */
-    public function setArtifact($artifact)
+    public function setArtifact(string $artifact)
     {
-        assert(is_string($artifact));
         $this->artifact = $artifact;
     }
 

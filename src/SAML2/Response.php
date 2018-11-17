@@ -2,6 +2,8 @@
 
 namespace SAML2;
 
+declare(strict_types=1);
+
 /**
  * Class for SAML 2 Response messages.
  *
@@ -23,7 +25,7 @@ class Response extends StatusResponse
     {
         parent::__construct('Response', $xml);
 
-        $this->assertions = array();
+        $this->assertions = [];
 
         if ($xml === null) {
             return;

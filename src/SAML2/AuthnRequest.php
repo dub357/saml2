@@ -7,6 +7,8 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\XML\saml\SubjectConfirmation;
 use SAML2\Exception\InvalidArgumentException;
 
+declare(strict_types=1);
+
 /**
  * Class for SAML 2 authentication request messages.
  *
@@ -49,7 +51,7 @@ class AuthnRequest extends Request
      *
      * @var array
      */
-    private $IDPList = array();
+    private $IDPList = [];
 
     /**
      * The ProxyCount in this request's scoping element
@@ -64,7 +66,7 @@ class AuthnRequest extends Request
      * @var array
      */
 
-    private $RequesterID = array();
+    private $RequesterID = [];
 
     /**
      * The URL of the asertion consumer service where the response should be delivered.
@@ -111,7 +113,7 @@ class AuthnRequest extends Request
     /**
      * @var \SAML2\XML\saml\SubjectConfirmation[]
      */
-    private $subjectConfirmation = array();
+    private $subjectConfirmation = [];
 
     /**
      * @var string
@@ -133,7 +135,7 @@ class AuthnRequest extends Request
     {
         parent::__construct('AuthnRequest', $xml);
 
-        $this->nameIdPolicy = array();
+        $this->nameIdPolicy = [];
         $this->forceAuthn = false;
         $this->isPassive = false;
 
@@ -171,7 +173,7 @@ class AuthnRequest extends Request
     }
 
     /**
-     * @param $xml
+     * @param \DOMElement $xml
      *
      * @throws \Exception
      */
@@ -246,10 +248,10 @@ class AuthnRequest extends Request
 
         $requestedAuthnContext = $requestedAuthnContext[0];
 
-        $rac = array(
-            'AuthnContextClassRef' => array(),
+        $rac = [
+            'AuthnContextClassRef' => [],
             'Comparison'           => Constants::COMPARISON_EXACT,
-        );
+        ];
 
         $accr = Utils::xpQuery($requestedAuthnContext, './saml_assertion:AuthnContextClassRef');
         foreach ($accr as $i) {
@@ -349,10 +351,8 @@ class AuthnRequest extends Request
      *
      * @param bool $forceAuthn The ForceAuthn attribute.
      */
-    public function setForceAuthn($forceAuthn)
+    public function setForceAuthn(bool $forceAuthn)
     {
-        assert(is_bool($forceAuthn));
-
         $this->forceAuthn = $forceAuthn;
     }
 
@@ -373,10 +373,8 @@ class AuthnRequest extends Request
      *
      * @param string $ProviderName The ProviderName attribute.
      */
-    public function setProviderName($ProviderName)
+    public function setProviderName(string $ProviderName)
     {
-        assert(is_string($ProviderName));
-
         $this->ProviderName = $ProviderName;
     }
 
@@ -397,10 +395,8 @@ class AuthnRequest extends Request
      *
      * @param bool $isPassive The IsPassive attribute.
      */
-    public function setIsPassive($isPassive)
+    public function setIsPassive(bool $isPassive)
     {
-        assert(is_bool($isPassive));
-
         $this->isPassive = $isPassive;
     }
 
@@ -439,9 +435,8 @@ class AuthnRequest extends Request
     /**
      * @param int $ProxyCount
      */
-    public function setProxyCount($ProxyCount)
+    public function setProxyCount(int $ProxyCount)
     {
-        assert(is_int($ProxyCount));
         $this->ProxyCount = $ProxyCount;
     }
 
@@ -484,10 +479,8 @@ class AuthnRequest extends Request
      *
      * @param string|null $assertionConsumerServiceURL The AssertionConsumerServiceURL attribute.
      */
-    public function setAssertionConsumerServiceURL($assertionConsumerServiceURL)
+    public function setAssertionConsumerServiceURL(string $assertionConsumerServiceURL = null)
     {
-        assert(is_string($assertionConsumerServiceURL) || is_null($assertionConsumerServiceURL));
-
         $this->assertionConsumerServiceURL = $assertionConsumerServiceURL;
     }
 
@@ -504,12 +497,10 @@ class AuthnRequest extends Request
     /**
      * Set the value of the ProtocolBinding attribute.
      *
-     * @param string $protocolBinding The ProtocolBinding attribute.
+     * @param string|null $protocolBinding The ProtocolBinding attribute.
      */
-    public function setProtocolBinding($protocolBinding)
+    public function setProtocolBinding(string $protocolBinding = null)
     {
-        assert(is_string($protocolBinding) || is_null($protocolBinding));
-
         $this->protocolBinding = $protocolBinding;
     }
 
@@ -528,10 +519,8 @@ class AuthnRequest extends Request
      *
      * @param int|null $attributeConsumingServiceIndex The AttributeConsumingServiceIndex attribute.
      */
-    public function setAttributeConsumingServiceIndex($attributeConsumingServiceIndex)
+    public function setAttributeConsumingServiceIndex(int $attributeConsumingServiceIndex = null)
     {
-        assert(is_int($attributeConsumingServiceIndex) || is_null($attributeConsumingServiceIndex));
-
         $this->attributeConsumingServiceIndex = $attributeConsumingServiceIndex;
     }
 
@@ -550,10 +539,8 @@ class AuthnRequest extends Request
      *
      * @param int|null $assertionConsumerServiceIndex The AssertionConsumerServiceIndex attribute.
      */
-    public function setAssertionConsumerServiceIndex($assertionConsumerServiceIndex)
+    public function setAssertionConsumerServiceIndex(int $assertionConsumerServiceIndex = null)
     {
-        assert(is_int($assertionConsumerServiceIndex) || is_null($assertionConsumerServiceIndex));
-
         $this->assertionConsumerServiceIndex = $assertionConsumerServiceIndex;
     }
 
@@ -572,10 +559,8 @@ class AuthnRequest extends Request
      *
      * @param array|null $requestedAuthnContext The RequestedAuthnContext.
      */
-    public function setRequestedAuthnContext($requestedAuthnContext)
+    public function setRequestedAuthnContext(array $requestedAuthnContext = null)
     {
-        assert(is_array($requestedAuthnContext) || is_null($requestedAuthnContext));
-
         $this->requestedAuthnContext = $requestedAuthnContext;
     }
 
@@ -646,7 +631,7 @@ class AuthnRequest extends Request
      * @param XMLSecurityKey $key       The decryption key.
      * @param array          $blacklist Blacklisted decryption algorithms.
      */
-    public function decryptNameId(XMLSecurityKey $key, array $blacklist = array())
+    public function decryptNameId(XMLSecurityKey $key, array $blacklist = [])
     {
         if ($this->encryptedNameId === null) {
             /* No NameID to decrypt. */
@@ -758,11 +743,11 @@ class AuthnRequest extends Request
                         $idpEntry->setAttribute('ProviderID', $provider);
                     } elseif (is_array($provider)) {
                         foreach ($provider as $attribute => $value) {
-                            if (in_array($attribute, array(
+                            if (in_array($attribute, [
                                 'ProviderID',
                                 'Loc',
                                 'Name'
-                            ), true)) {
+                            ], true)) {
                                 $idpEntry->setAttribute($attribute, $value);
                             }
                         }

@@ -7,6 +7,8 @@ use SAML2\Response;
 use SAML2\Response\Validation\ConstraintValidator;
 use SAML2\Response\Validation\Result;
 
+declare(strict_types=1);
+
 class IsSuccessful implements ConstraintValidator
 {
     /**
@@ -44,7 +46,7 @@ class IsSuccessful implements ConstraintValidator
      *
      * @return string
      */
-    private function truncateStatus($status)
+    private function truncateStatus(string $status)
     {
         $prefixLength = strlen(Constants::STATUS_PREFIX);
         if (strpos($status, Constants::STATUS_PREFIX) !== 0) {

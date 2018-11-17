@@ -2,6 +2,8 @@
 
 namespace SAML2\XML\mdui;
 
+declare(strict_types=1);
+
 /**
  * Class for handling the Logo metadata extensions for login and discovery user interface
  *

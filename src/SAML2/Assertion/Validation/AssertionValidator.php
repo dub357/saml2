@@ -8,6 +8,8 @@ use SAML2\Configuration\IdentityProviderAware;
 use SAML2\Configuration\ServiceProvider;
 use SAML2\Configuration\ServiceProviderAware;
 
+declare(strict_types=1);
+
 class AssertionValidator
 {
     /**

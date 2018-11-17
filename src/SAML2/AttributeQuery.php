@@ -2,6 +2,8 @@
 
 namespace SAML2;
 
+declare(strict_types=1);
+
 /**
  * Class for SAML 2 attribute query messages.
  *
@@ -46,7 +48,7 @@ class AttributeQuery extends SubjectQuery
     {
         parent::__construct('AttributeQuery', $xml);
 
-        $this->attributes = array();
+        $this->attributes = [];
         $this->nameFormat = Constants::NAMEFORMAT_UNSPECIFIED;
 
         if ($xml === null) {
@@ -77,7 +79,7 @@ class AttributeQuery extends SubjectQuery
             }
 
             if (!array_key_exists($name, $this->attributes)) {
-                $this->attributes[$name] = array();
+                $this->attributes[$name] = [];
             }
 
             $values = Utils::xpQuery($attribute, './saml_assertion:AttributeValue');
@@ -125,10 +127,8 @@ class AttributeQuery extends SubjectQuery
      *
      * @param string $nameFormat The NameFormat used on all attributes.
      */
-    public function setAttributeNameFormat($nameFormat)
+    public function setAttributeNameFormat(string $nameFormat)
     {
-        assert(is_string($nameFormat));
-
         $this->nameFormat = $nameFormat;
     }
 

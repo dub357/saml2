@@ -8,6 +8,8 @@ use SAML2\Certificate\X509;
 use SAML2\Configuration\CertificateProvider;
 use SAML2\SignedElement;
 
+declare(strict_types=1);
+
 /**
  * Validates the signature based on the fingerprint of the certificate
  *
@@ -76,7 +78,7 @@ class FingerprintValidator extends AbstractChainedValidator
 
         $fingerprintCollection = $this->fingerprintLoader->loadFromConfiguration($configuration);
 
-        $pemCandidates = array();
+        $pemCandidates = [];
         foreach ($this->certificates as $certificate) {
             /** @var \SAML2\Certificate\X509 $certificate */
             $certificateFingerprint = $certificate->getFingerprint();

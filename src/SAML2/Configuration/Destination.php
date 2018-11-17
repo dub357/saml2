@@ -4,6 +4,8 @@ namespace SAML2\Configuration;
 
 use SAML2\Exception\InvalidArgumentException;
 
+declare(strict_types=1);
+
 /**
  * Value Object representing the current destination
  */
@@ -17,12 +19,8 @@ class Destination
     /**
      * @param string $destination
      */
-    public function __construct($destination)
+    public function __construct(string $destination)
     {
-        if (!is_string($destination)) {
-            throw InvalidArgumentException::invalidType('string', $destination);
-        }
-
         $this->destination = $destination;
     }
 

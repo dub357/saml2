@@ -2,6 +2,8 @@
 
 namespace SAML2\XML\mdrpi;
 
+declare(strict_types=1);
+
 /**
  * Common definitions for the mdrpi metadata extension.
  *

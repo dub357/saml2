@@ -4,6 +4,8 @@ namespace SAML2\Assertion\Transformer;
 
 use SAML2\Assertion;
 
+declare(strict_types=1);
+
 interface Transformer
 {
     /**

@@ -5,6 +5,8 @@ namespace SAML2\XML\md;
 use SAML2\Constants;
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 ContactPerson.
  *
@@ -26,7 +28,7 @@ class ContactPerson
      *
      * @var array
      */
-    public $Extensions = array();
+    public $Extensions = [];
 
     /**
      * The Company of this contact.
@@ -54,21 +56,21 @@ class ContactPerson
      *
      * @var array
      */
-    public $EmailAddress = array();
+    public $EmailAddress = [];
 
     /**
      * The TelephoneNumbers of this contact.
      *
      * @var array
      */
-    public $TelephoneNumber = array();
+    public $TelephoneNumber = [];
 
     /**
      * Extra attributes on the contact element.
      *
      * @var array
      */
-    public $ContactPersonAttributes = array();
+    public $ContactPersonAttributes = [];
 
     /**
      * Initialize a ContactPerson element.
@@ -111,13 +113,11 @@ class ContactPerson
      * @param  string     $name   The name of the child elements.
      * @return array      The value of the child elements.
      */
-    private static function getStringElements(\DOMElement $parent, $name)
+    private static function getStringElements(\DOMElement $parent, string $name)
     {
-        assert(is_string($name));
-
         $e = Utils::xpQuery($parent, './saml_metadata:' . $name);
 
-        $ret = array();
+        $ret = [];
         foreach ($e as $i) {
             $ret[] = $i->textContent;
         }
@@ -133,10 +133,8 @@ class ContactPerson
      * @return string|null The value of the child element.
      * @throws \Exception
      */
-    private static function getStringElement(\DOMElement $parent, $name)
+    private static function getStringElement(\DOMElement $parent, string $name)
     {
-        assert(is_string($name));
-
         $e = self::getStringElements($parent, $name);
         if (empty($e)) {
             return null;

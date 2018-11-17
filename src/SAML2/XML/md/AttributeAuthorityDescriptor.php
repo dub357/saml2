@@ -6,6 +6,8 @@ use SAML2\Constants;
 use SAML2\Utils;
 use SAML2\XML\saml\Attribute;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 metadata AttributeAuthorityDescriptor.
  *
@@ -20,7 +22,7 @@ class AttributeAuthorityDescriptor extends RoleDescriptor
      *
      * @var \SAML2\XML\md\EndpointType[]
      */
-    public $AttributeService = array();
+    public $AttributeService = [];
 
     /**
      * List of AssertionIDRequestService endpoints.
@@ -29,7 +31,7 @@ class AttributeAuthorityDescriptor extends RoleDescriptor
      *
      * @var \SAML2\XML\md\EndpointType[]
      */
-    public $AssertionIDRequestService = array();
+    public $AssertionIDRequestService = [];
 
     /**
      * List of supported NameID formats.
@@ -38,7 +40,7 @@ class AttributeAuthorityDescriptor extends RoleDescriptor
      *
      * @var string[]
      */
-    public $NameIDFormat = array();
+    public $NameIDFormat = [];
 
     /**
      * List of supported attribute profiles.
@@ -47,7 +49,7 @@ class AttributeAuthorityDescriptor extends RoleDescriptor
      *
      * @var array
      */
-    public $AttributeProfile = array();
+    public $AttributeProfile = [];
 
     /**
      * List of supported attributes.
@@ -56,7 +58,7 @@ class AttributeAuthorityDescriptor extends RoleDescriptor
      *
      * @var \SAML2\XML\saml\Attribute[]
      */
-    public $Attribute = array();
+    public $Attribute = [];
 
     /**
      * Initialize an IDPSSODescriptor.

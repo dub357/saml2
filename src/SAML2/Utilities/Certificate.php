@@ -2,6 +2,8 @@
 
 namespace SAML2\Utilities;
 
+declare(strict_types=1);
+
 /**
  * Collection of Utility functions specifically for certificates
  */
@@ -13,11 +15,11 @@ class Certificate
     const CERTIFICATE_PATTERN = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
 
     /**
-     * @param  $certificate
+     * @param string $certificate
      *
      * @return bool
      */
-    public static function hasValidStructure($certificate)
+    public static function hasValidStructure(string $certificate)
     {
         return !!preg_match(self::CERTIFICATE_PATTERN, $certificate);
     }
@@ -27,7 +29,7 @@ class Certificate
      *
      * @return string
      */
-    public static function convertToCertificate($X509CertificateContents)
+    public static function convertToCertificate(string $X509CertificateContents)
     {
         return "-----BEGIN CERTIFICATE-----\n"
                 . chunk_split($X509CertificateContents, 64)

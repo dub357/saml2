@@ -4,6 +4,8 @@ namespace SAML2\Utilities;
 
 use SAML2\Exception\RuntimeException;
 
+declare(strict_types=1);
+
 /**
  * Simple Array implementation of Collection.
  *
@@ -16,7 +18,7 @@ class ArrayCollection implements Collection
      */
     protected $elements;
 
-    public function __construct(array $elements = array())
+    public function __construct(array $elements = []))
     {
         $this->elements = $elements;
     }

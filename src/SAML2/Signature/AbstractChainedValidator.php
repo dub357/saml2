@@ -6,6 +6,8 @@ use Psr\Log\LoggerInterface;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\SignedElement;
 
+declare(strict_types=1);
+
 abstract class AbstractChainedValidator implements ChainedValidator
 {
     /**
@@ -28,11 +30,11 @@ abstract class AbstractChainedValidator implements ChainedValidator
      *
      * @return bool
      */
-    protected function validateElementWithKeys(SignedElement $element, $pemCandidates)
+    protected function validateElementWithKeys(SignedElement $element, Certificate\X509[] $pemCandidates)
     {
         $lastException = null;
         foreach ($pemCandidates as $index => $candidateKey) {
-            $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'public'));
+            $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'public']);
             $key->loadKey($candidateKey->getCertificate());
 
             try {

@@ -5,6 +5,8 @@ namespace SAML2\XML;
 use SAML2\DOMDocumentFactory;
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Serializable class used to hold an XML element.
  *
@@ -81,9 +83,9 @@ class Chunk implements \Serializable
     /**
      * Un-serialize this XML chunk.
      *
-     * @param  string          $serialized The serialized chunk.
+     * @param string          $serialized The serialized chunk.
      */
-    public function unserialize($serialized)
+    public function unserialize(string $serialized)
     {
         $doc = DOMDocumentFactory::fromString(unserialize($serialized));
         $this->xml = $doc->documentElement;

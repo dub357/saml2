@@ -15,6 +15,8 @@ use SAML2\Response\Exception\UnsignedResponseException;
 use SAML2\Response\Validation\PreconditionValidator;
 use SAML2\Signature\Validator;
 
+declare(strict_types=1);
+
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects) - due to specific exceptions
  */

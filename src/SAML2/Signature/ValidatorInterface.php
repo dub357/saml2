@@ -5,6 +5,8 @@ namespace SAML2\Signature;
 use SAML2\Configuration\CertificateProvider;
 use SAML2\SignedElement;
 
+declare(strict_types=1);
+
 interface ValidatorInterface
 {
     /**

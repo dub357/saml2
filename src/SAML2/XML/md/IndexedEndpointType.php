@@ -4,6 +4,8 @@ namespace SAML2\XML\md;
 
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 IndexedEndpointType.
  *
@@ -54,9 +56,8 @@ class IndexedEndpointType extends EndpointType
      * @param string     $name   The name of the element we should create.
      * @return \DOMElement
      */
-    public function toXML(\DOMElement $parent, $name)
+    public function toXML(\DOMElement $parent, string $name)
     {
-        assert(is_string($name));
         assert(is_int($this->index));
         assert(is_null($this->isDefault) || is_bool($this->isDefault));
 

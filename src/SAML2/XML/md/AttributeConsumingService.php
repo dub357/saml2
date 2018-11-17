@@ -5,6 +5,8 @@ namespace SAML2\XML\md;
 use SAML2\Constants;
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 Metadata AttributeConsumingService element.
  *
@@ -33,7 +35,7 @@ class AttributeConsumingService
      *
      * @var array
      */
-    public $ServiceName = array();
+    public $ServiceName = [];
 
     /**
      * The ServiceDescription of this AttributeConsumingService.
@@ -42,7 +44,7 @@ class AttributeConsumingService
      *
      * @var array
      */
-    public $ServiceDescription = array();
+    public $ServiceDescription = [];
 
     /**
      * The RequestedAttribute elements.
@@ -51,7 +53,7 @@ class AttributeConsumingService
      *
      * @var \SAML2\XML\md\RequestedAttribute[]
      */
-    public $RequestedAttribute = array();
+    public $RequestedAttribute = [];
 
     /**
      * Initialize / parse an AttributeConsumingService.

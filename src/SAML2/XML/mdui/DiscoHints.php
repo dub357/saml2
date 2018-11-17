@@ -5,6 +5,8 @@ namespace SAML2\XML\mdui;
 use SAML2\Utils;
 use SAML2\XML\Chunk;
 
+declare(strict_types=1);
+
 /**
  * Class for handling the metadata extensions for login and discovery user interface
  *
@@ -20,28 +22,28 @@ class DiscoHints
      *
      * @var \SAML2\XML\Chunk[]
      */
-    public $children = array();
+    public $children = [];
 
     /**
      * The IPHint, as an array of strings.
      *
      * @var string[]
      */
-    public $IPHint = array();
+    public $IPHint = [];
 
     /**
      * The DomainHint, as an array of strings.
      *
      * @var string[]
      */
-    public $DomainHint = array();
+    public $DomainHint = [];
 
     /**
      * The GeolocationHint, as an array of strings.
      *
      * @var string[]
      */
-    public $GeolocationHint = array();
+    public $GeolocationHint = [];
 
     /**
      * Create a DiscoHints element.

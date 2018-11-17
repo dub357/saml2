@@ -7,6 +7,8 @@ use SAML2\Utils;
 use SAML2\XML\Chunk;
 use SAML2\XML\ds\KeyInfo;
 
+declare(strict_types=1);
+
 /**
  * Class representing a KeyDescriptor element.
  *
@@ -37,7 +39,7 @@ class KeyDescriptor
      *
      * @var \SAML2\XML\Chunk[]
      */
-    public $EncryptionMethod = array();
+    public $EncryptionMethod = [];
 
     /**
      * Initialize an KeyDescriptor.

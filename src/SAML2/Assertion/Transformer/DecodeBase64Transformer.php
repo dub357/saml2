@@ -6,6 +6,8 @@ use SAML2\Assertion;
 use SAML2\Configuration\IdentityProvider;
 use SAML2\Configuration\IdentityProviderAware;
 
+declare(strict_types=1);
+
 class DecodeBase64Transformer implements
     Transformer,
     IdentityProviderAware
@@ -28,7 +30,7 @@ class DecodeBase64Transformer implements
 
         $attributes = $assertion->getAttributes();
         $keys = array_keys($attributes);
-        $decoded = array_map(array($this, 'decodeValue'), $attributes);
+        $decoded = array_map([$this, 'decodeValue'], $attributes);
 
         $attributes = array_combine($keys, $decoded);
 
@@ -36,12 +38,12 @@ class DecodeBase64Transformer implements
     }
 
     /**
-     * @param $value
+     * @param string $value
      *
      * @return array
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
-    private function decodeValue($value)
+    private function decodeValue(string $value)
     {
         $elements = explode('_', $value);
         return array_map('base64_decode', $elements);

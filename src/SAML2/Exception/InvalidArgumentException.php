@@ -2,6 +2,8 @@
 
 namespace SAML2\Exception;
 
+declare(strict_types=1);
+
 class InvalidArgumentException extends \InvalidArgumentException implements Throwable
 {
     /**
@@ -10,7 +12,7 @@ class InvalidArgumentException extends \InvalidArgumentException implements Thro
      *
      * @return \SAML2\Exception\InvalidArgumentException
      */
-    public static function invalidType($expected, $parameter)
+    public static function invalidType(string $expected, $parameter)
     {
         $message = sprintf(
             'Invalid Argument type: "%s" expected, "%s" given',

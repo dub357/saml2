@@ -6,6 +6,8 @@ use SAML2\Configuration\Destination;
 use SAML2\Response\Validation\ConstraintValidator\DestinationMatches;
 use SAML2\Response\Validation\ConstraintValidator\IsSuccessful;
 
+declare(strict_types=1);
+
 /**
  * Validates the preconditions that have to be met prior to processing of the response.
  */

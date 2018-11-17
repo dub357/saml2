@@ -17,7 +17,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
     {
         $scope = new Scope();
         $scope->scope = "example.org";
-        $scope->regexp = FALSE;
+        $scope->regexp = false;
 
         $document = DOMDocumentFactory::fromString('<root />');
         $scopeElement = $scope->toXML($document->firstChild);
@@ -59,7 +59,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
     {
         $scope = new Scope();
         $scope->scope = "^(.*\.)?example\.edu$";
-        $scope->regexp = TRUE;
+        $scope->regexp = true;
 
         $document = DOMDocumentFactory::fromString('<root />');
         $scopeElement = $scope->toXML($document->firstChild);

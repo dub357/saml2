@@ -5,6 +5,8 @@ namespace SAML2\XML\ds;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SAML2\XML\Chunk;
 
+declare(strict_types=1);
+
 /**
  * Class representing a ds:X509Data element.
  *
@@ -20,7 +22,7 @@ class X509Data
      *
      * @var (\SAML2\XML\Chunk|\SAML2\XML\ds\X509Certificate)[]
      */
-    public $data = array();
+    public $data = [];
 
     /**
      * Initialize a X509Data.

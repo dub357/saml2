@@ -5,6 +5,8 @@ namespace SAML2\XML\md;
 use SAML2\Constants;
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 SSODescriptorType.
  *
@@ -19,7 +21,7 @@ abstract class SSODescriptorType extends RoleDescriptor
      *
      * @var \SAML2\XML\md\IndexedEndpointType[]
      */
-    public $ArtifactResolutionService = array();
+    public $ArtifactResolutionService = [];
 
     /**
      * List of SingleLogoutService endpoints.
@@ -28,7 +30,7 @@ abstract class SSODescriptorType extends RoleDescriptor
      *
      * @var \SAML2\XML\md\EndpointType[]
      */
-    public $SingleLogoutService = array();
+    public $SingleLogoutService = [];
 
     /**
      * List of ManageNameIDService endpoints.
@@ -37,7 +39,7 @@ abstract class SSODescriptorType extends RoleDescriptor
      *
      * @var \SAML2\XML\md\EndpointType[]
      */
-    public $ManageNameIDService = array();
+    public $ManageNameIDService = [];
 
     /**
      * List of supported NameID formats.
@@ -46,7 +48,7 @@ abstract class SSODescriptorType extends RoleDescriptor
      *
      * @var string[]
      */
-    public $NameIDFormat = array();
+    public $NameIDFormat = [];
 
     /**
      * Initialize a SSODescriptor.
@@ -54,10 +56,8 @@ abstract class SSODescriptorType extends RoleDescriptor
      * @param string          $elementName The name of this element.
      * @param \DOMElement|null $xml         The XML element we should load.
      */
-    protected function __construct($elementName, \DOMElement $xml = null)
+    protected function __construct(string $elementName, \DOMElement $xml = null)
     {
-        assert(is_string($elementName));
-
         parent::__construct($elementName, $xml);
 
         if ($xml === null) {

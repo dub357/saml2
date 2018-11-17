@@ -12,6 +12,8 @@ use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
 use SAML2\XML\md\KeyDescriptor;
 
+declare(strict_types=1);
+
 /**
  * Helper functions for the SAML2 library.
  *
@@ -84,17 +86,17 @@ class Utils
         }
 
         /* Now we extract all available X509 certificates in the signature element. */
-        $certificates = array();
+        $certificates = [];
         foreach (self::xpQuery($signatureElement, './ds:KeyInfo/ds:X509Data/ds:X509Certificate') as $certNode) {
             $certData = trim($certNode->textContent);
-            $certData = str_replace(array("\r", "\n", "\t", ' '), '', $certData);
+            $certData = str_replace(["\r", "\n", "\t", ' '], '', $certData);
             $certificates[] = $certData;
         }
 
-        $ret = array(
+        $ret = [
             'Signature' => $objXMLSecDSig,
             'Certificates' => $certificates,
-            );
+            ];
 
         return $ret;
     }
@@ -109,9 +111,8 @@ class Utils
      * @return XMLSecurityKey The new key.
      * @throws \Exception
      */
-    public static function castKey(XMLSecurityKey $key, $algorithm, $type = 'public')
+    public static function castKey(XMLSecurityKey $key, string $algorithm, string $type = 'public')
     {
-        assert(is_string($algorithm));
         assert($type === "public" || $type === "private");
 
         // do nothing if algorithm is already the type of the key
@@ -119,13 +120,13 @@ class Utils
             return $key;
         }
 
-        if (!in_array($algorithm, array(
+        if (!in_array($algorithm, [
             XMLSecurityKey::RSA_1_5,
             XMLSecurityKey::RSA_SHA1,
             XMLSecurityKey::RSA_SHA256,
             XMLSecurityKey::RSA_SHA384,
             XMLSecurityKey::RSA_SHA512
-        ), true)) {
+        ], true)) {
             throw new \Exception('Unsupported signing algorithm.');
         }
 
@@ -137,7 +138,7 @@ class Utils
             throw new \Exception('Missing key in public key details.');
         }
 
-        $newKey = new XMLSecurityKey($algorithm, array('type'=>$type));
+        $newKey = new XMLSecurityKey($algorithm, ['type' => $type]);
         $newKey->loadKey($keyInfo['key']);
 
         return $newKey;
@@ -188,9 +189,8 @@ class Utils
      * @param  string  $query The query.
      * @return \DOMElement[]    Array with matching DOM nodes.
      */
-    public static function xpQuery(\DOMNode $node, $query)
+    public static function xpQuery(\DOMNode $node, string $query)
     {
-        assert(is_string($query));
         static $xpCache = null;
 
         if ($node instanceof \DOMDocument) {
@@ -210,7 +210,7 @@ class Utils
         }
 
         $results = $xpCache->query($query, $node);
-        $ret = array();
+        $ret = [];
         for ($i = 0; $i < $results->length; $i++) {
             $ret[$i] = $results->item($i);
         }
@@ -234,7 +234,7 @@ class Utils
             $document = $parent->ownerDocument;
         }
 
-        $namespaces = array();
+        $namespaces = [];
         for ($e = $element; $e !== null; $e = $e->parentNode) {
             foreach (Utils::xpQuery($e, './namespace::*') as $ns) {
                 $prefix = $ns->localName;
@@ -273,10 +273,8 @@ class Utils
      * @return bool|mixed The value of the attribute, or $default if the attribute doesn't exist.
      * @throws \Exception
      */
-    public static function parseBoolean(\DOMElement $node, $attributeName, $default = null)
+    public static function parseBoolean(\DOMElement $node, string $attributeName, $default = null)
     {
-        assert(is_string($attributeName));
-
         if (!$node->hasAttribute($attributeName)) {
             return $default;
         }
@@ -342,9 +340,9 @@ class Utils
      */
     public static function parseNameId(\DOMElement $xml)
     {
-        $ret = array('Value' => trim($xml->textContent));
+        $ret = ['Value' => trim($xml->textContent)];
 
-        foreach (array('NameQualifier', 'SPNameQualifier', 'SPProvidedID', 'Format') as $attr) {
+        foreach (['NameQualifier', 'SPNameQualifier', 'SPProvidedID', 'Format'] as $attr) {
             if ($xml->hasAttribute($attr)) {
                 $ret[$attr] = $xml->getAttribute($attr);
             }
@@ -385,10 +383,10 @@ class Utils
         }
 
         $objXMLSecDSig->addReferenceList(
-            array($root),
+            [$root],
             $type,
-            array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-            array('id_name' => 'ID', 'overwrite' => false)
+            ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
+            ['id_name' => 'ID', 'overwrite' => false]
         );
 
         $objXMLSecDSig->sign($key);
@@ -555,7 +553,7 @@ class Utils
      * @return \DOMElement     The decrypted element.
      * @throws \Exception
      */
-    public static function decryptElement(\DOMElement $encryptedData, XMLSecurityKey $inputKey, array $blacklist = array())
+    public static function decryptElement(\DOMElement $encryptedData, XMLSecurityKey $inputKey, array $blacklist = [])
     {
         try {
             return self::doDecryptElement($encryptedData, $inputKey, $blacklist);
@@ -577,12 +575,9 @@ class Utils
      * @param  string     $localName    The localName of the localized strings.
      * @return array      Localized strings.
      */
-    public static function extractLocalizedStrings(\DOMElement $parent, $namespaceURI, $localName)
+    public static function extractLocalizedStrings(\DOMElement $parent, string $namespaceURI, string $localName)
     {
-        assert(is_string($namespaceURI));
-        assert(is_string($localName));
-
-        $ret = array();
+        $ret = [];
         for ($node = $parent->firstChild; $node !== null; $node = $node->nextSibling) {
             if ($node->namespaceURI !== $namespaceURI || $node->localName !== $localName) {
                 continue;
@@ -607,12 +602,9 @@ class Utils
      * @param  string     $localName    The localName of the string elements.
      * @return array      The string values of the various nodes.
      */
-    public static function extractStrings(\DOMElement $parent, $namespaceURI, $localName)
+    public static function extractStrings(\DOMElement $parent, string $namespaceURI, string $localName)
     {
-        assert(is_string($namespaceURI));
-        assert(is_string($localName));
-
-        $ret = array();
+        $ret = [];
         for ($node = $parent->firstChild; $node !== null; $node = $node->nextSibling) {
             if ($node->namespaceURI !== $namespaceURI || $node->localName !== $localName) {
                 continue;
@@ -632,12 +624,8 @@ class Utils
      * @param  string     $value     The value of the element.
      * @return \DOMElement The generated element.
      */
-    public static function addString(\DOMElement $parent, $namespace, $name, $value)
+    public static function addString(\DOMElement $parent, string $namespace, string $name, string $value)
     {
-        assert(is_string($namespace));
-        assert(is_string($name));
-        assert(is_string($value));
-
         $doc = $parent->ownerDocument;
 
         $n = $doc->createElementNS($namespace, $name);
@@ -656,12 +644,8 @@ class Utils
      * @param bool       $localized Whether the strings are localized, and should include the xml:lang attribute.
      * @param array      $values    The values we should create the elements from.
      */
-    public static function addStrings(\DOMElement $parent, $namespace, $name, $localized, array $values)
+    public static function addStrings(\DOMElement $parent, string $namespace, string $name, bool $localized, array $values)
     {
-        assert(is_string($namespace));
-        assert(is_string($name));
-        assert(is_bool($localized));
-
         $doc = $parent->ownerDocument;
 
         foreach ($values as $index => $value) {
@@ -677,13 +661,11 @@ class Utils
     /**
      * Create a KeyDescriptor with the given certificate.
      *
-     * @param  string                     $x509Data The certificate, as a base64-encoded DER data.
+     * @param  string $x509Data The certificate, as a base64-encoded DER data.
      * @return \SAML2\XML\md\KeyDescriptor The keydescriptor.
      */
-    public static function createKeyDescriptor($x509Data)
+    public static function createKeyDescriptor(string $x509Data)
     {
-        assert(is_string($x509Data));
-
         $x509Certificate = new X509Certificate();
         $x509Certificate->certificate = $x509Data;
 
@@ -718,9 +700,9 @@ class Utils
      * @return int Converted to a unix timestamp.
      * @throws \Exception
      */
-    public static function xsDateTimeToTimestamp($time)
+    public static function xsDateTimeToTimestamp(string $time)
     {
-        $matches = array();
+        $matches = [];
 
         // We use a very strict regex to parse the timestamp.
         $regex = '/^(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)T(\\d\\d):(\\d\\d):(\\d\\d)(?:\\.\\d{1,9})?Z$/D';

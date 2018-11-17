@@ -5,6 +5,8 @@ namespace SAML2\XML\ds;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class representing a ds:KeyName element.
  *

@@ -8,12 +8,14 @@ use SAML2\Configuration\IdentityProviderAware;
 use SAML2\Configuration\ServiceProvider;
 use SAML2\Configuration\ServiceProviderAware;
 
+declare(strict_types=1);
+
 class TransformerChain implements Transformer
 {
     /**
      * @var \SAML2\Assertion\Transformer\Transformer[]
      */
-    private $transformers = array();
+    private $transformers = [];
 
     /**
      * @var \SAML2\Configuration\IdentityProvider

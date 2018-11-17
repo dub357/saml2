@@ -10,20 +10,20 @@ class AttributeQueryTest extends \PHPUnit_Framework_TestCase
     public function testMarshalling()
     {
         $attributeQuery = new AttributeQuery();
-        $attributeQuery->setNameID(array('Value' => 'NameIDValue'));
+        $attributeQuery->setNameID(['Value' => 'NameIDValue']);
         $attributeQuery->setAttributes(
-            array(
-                'test1' => array(
+            [
+                'test1' => [
                     'test1_attrv1',
                     'test1_attrv2',
-                ),
-                'test2' => array(
+                ],
+                'test2' => [
                     'test2_attrv1',
                     'test2_attrv2',
                     'test2_attrv3',
-                ),
-                'test3' => array(),
-            )
+                ],
+                'test3' => [],
+            ]
         );
         $attributeQueryElement = $attributeQuery->toUnsignedXML();
 
@@ -97,20 +97,20 @@ XML;
         $fmt_uri = 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri';
 
         $attributeQuery = new AttributeQuery();
-        $attributeQuery->setNameID(array('Value' => 'NameIDValue'));
+        $attributeQuery->setNameID(['Value' => 'NameIDValue']);
         $attributeQuery->setAttributes(
-            array(
-                'test1' => array(
+            [
+                'test1' => [
                     'test1_attrv1',
                     'test1_attrv2',
-                ),
-                'test2' => array(
+                ],
+                'test2' => [
                     'test2_attrv1',
                     'test2_attrv2',
                     'test2_attrv3',
-                ),
-                'test3' => array(),
-            )
+                ],
+                'test3' => [],
+            ]
         );
         $attributeQuery->setAttributeNameFormat($fmt_uri);
         $attributeQueryElement = $attributeQuery->toUnsignedXML();

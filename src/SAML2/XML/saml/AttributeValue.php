@@ -6,6 +6,8 @@ use SAML2\Constants;
 use SAML2\DOMDocumentFactory;
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Serializable class representing an AttributeValue.
  *
@@ -118,7 +120,7 @@ class AttributeValue implements \Serializable
      *
      * @param string $serialized The serialized AttributeValue.
      */
-    public function unserialize($serialized)
+    public function unserialize(string $serialized)
     {
         $doc = DOMDocumentFactory::fromString(unserialize($serialized));
         $this->element = $doc->documentElement;

@@ -6,6 +6,8 @@ use SAML2\Utils;
 use SAML2\XML\Chunk;
 use SAML2\XML\saml\Attribute;
 
+declare(strict_types=1);
+
 /**
  * Class for handling the EntityAttributes metadata extension.
  *

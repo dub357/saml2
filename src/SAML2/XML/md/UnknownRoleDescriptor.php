@@ -4,6 +4,8 @@ namespace SAML2\XML\md;
 
 use SAML2\XML\Chunk;
 
+declare(strict_types=1);
+
 /**
  * Class representing unknown RoleDescriptors.
  *

@@ -7,6 +7,8 @@ use SAML2\DOMDocumentFactory;
 use SAML2\SignedElementHelper;
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 EntityDescriptor element.
  *
@@ -49,7 +51,7 @@ class EntityDescriptor extends SignedElementHelper
      *
      * @var array
      */
-    public $Extensions = array();
+    public $Extensions = [];
 
     /**
      * Array with all roles for this entity.
@@ -58,7 +60,7 @@ class EntityDescriptor extends SignedElementHelper
      *
      * @var (\SAML2\XML\md\UnknownRoleDescriptor|\SAML2\XML\md\IDPSSODescriptor|\SAML2\XML\md\SPSSODescriptor|\SAML2\XML\md\AuthnAuthorityDescriptor|\SAML2\XML\md\AttributeAuthorityDescriptor|\SAML2\XML\md\PDPDescriptor)[]
      */
-    public $RoleDescriptor = array();
+    public $RoleDescriptor = [];
 
     /**
      * AffiliationDescriptor of this entity.
@@ -79,14 +81,14 @@ class EntityDescriptor extends SignedElementHelper
      *
      * @var \SAML2\XML\md\ContactPerson[]
      */
-    public $ContactPerson = array();
+    public $ContactPerson = [];
 
     /**
      * AdditionalMetadataLocation elements for this entity.
      *
      * @var \SAML2\XML\md\AdditionalMetadataLocation[]
      */
-    public $AdditionalMetadataLocation = array();
+    public $AdditionalMetadataLocation = [];
 
     /**
      * Initialize an EntitiyDescriptor.

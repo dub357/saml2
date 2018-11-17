@@ -6,6 +6,8 @@ use SAML2\Constants;
 use SAML2\Utils;
 use SAML2\XML\Chunk;
 
+declare(strict_types=1);
+
 /**
  * Class for handling SAML2 extensions.
  *
@@ -21,7 +23,7 @@ class Extensions
      */
     public static function getList(\DOMElement $parent)
     {
-        $ret = array();
+        $ret = [];
         foreach (Utils::xpQuery($parent, './saml_protocol:Extensions/*') as $node) {
             $ret[] = new Chunk($node);
         }

@@ -5,6 +5,8 @@ namespace SAML2\XML\saml;
 use SAML2\Constants;
 use SAML2\DOMDocumentFactory;
 
+declare(strict_types=1);
+
 /**
  * Class representing the saml:Issuer element.
  *
@@ -55,7 +57,6 @@ class Issuer extends NameIDType
      * @var boolean
      */
     public $Saml2IssuerShowAll = false; //setting true break saml-core-2.0-os 8.3.6
-    
 
 
     /**

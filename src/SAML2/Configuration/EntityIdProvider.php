@@ -2,6 +2,8 @@
 
 namespace SAML2\Configuration;
 
+declare(strict_types=1);
+
 /**
  * Interface \SAML2\Configuration\EntityIdProvider
  */

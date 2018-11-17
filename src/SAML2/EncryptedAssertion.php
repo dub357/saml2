@@ -5,6 +5,8 @@ namespace SAML2;
 use RobRichards\XMLSecLibs\XMLSecEnc;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
+declare(strict_types=1);
+
 /**
  * Class handling encrypted assertions.
  *
@@ -88,7 +90,7 @@ class EncryptedAssertion
      * @param  array           $blacklist Blacklisted decryption algorithms.
      * @return \SAML2\Assertion The decrypted assertion.
      */
-    public function getAssertion(XMLSecurityKey $inputKey, array $blacklist = array())
+    public function getAssertion(XMLSecurityKey $inputKey, array $blacklist = [])
     {
         $assertionXML = Utils::decryptElement($this->encryptedData, $inputKey, $blacklist);
 

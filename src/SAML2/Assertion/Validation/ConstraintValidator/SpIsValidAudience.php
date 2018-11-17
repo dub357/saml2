@@ -8,6 +8,8 @@ use SAML2\Assertion\Validation\Result;
 use SAML2\Configuration\ServiceProvider;
 use SAML2\Configuration\ServiceProviderAware;
 
+declare(strict_types=1);
+
 class SpIsValidAudience implements
     AssertionConstraintValidator,
     ServiceProviderAware

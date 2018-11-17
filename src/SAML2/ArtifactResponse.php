@@ -2,6 +2,8 @@
 
 namespace SAML2;
 
+declare(strict_types=1);
+
 /**
  * The \SAML2\ArtifactResponse, is the response to the \SAML2\ArtifactResolve.
  *

@@ -7,12 +7,14 @@
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 /**
  * Autoload function that looks for classes migrated to PSR-2.
  *
  * @param string $className Name of the class.
  */
-function SAML2_autoload($className)
+function SAML2_autoload(string $className)
 {
     // handle classes that have been renamed
     $renamed = array(

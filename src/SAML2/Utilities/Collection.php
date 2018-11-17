@@ -2,6 +2,8 @@
 
 namespace SAML2\Utilities;
 
+declare(strict_types=1);
+
 interface Collection extends \ArrayAccess, \Countable, \IteratorAggregate
 {
     /**

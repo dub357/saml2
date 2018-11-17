@@ -2,6 +2,8 @@
 
 namespace SAML2\XML\alg;
 
+declare(strict_types=1);
+
 /**
  * Common definitions for the algsupport metadata extension.
  *

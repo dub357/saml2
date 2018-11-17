@@ -5,6 +5,8 @@ namespace SAML2\XML\md;
 use SAML2\Constants;
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 metadata PDPDescriptor.
  *
@@ -19,7 +21,7 @@ class PDPDescriptor extends RoleDescriptor
      *
      * @var \SAML2\XML\md\EndpointType[]
      */
-    public $AuthzService = array();
+    public $AuthzService = [];
 
     /**
      * List of AssertionIDRequestService endpoints.
@@ -28,7 +30,7 @@ class PDPDescriptor extends RoleDescriptor
      *
      * @var \SAML2\XML\md\EndpointType[]
      */
-    public $AssertionIDRequestService = array();
+    public $AssertionIDRequestService = [];
 
     /**
      * List of supported NameID formats.
@@ -37,7 +39,7 @@ class PDPDescriptor extends RoleDescriptor
      *
      * @var string[]
      */
-    public $NameIDFormat = array();
+    public $NameIDFormat = [];
 
     /**
      * Initialize an IDPSSODescriptor.

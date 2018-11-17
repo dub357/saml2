@@ -4,6 +4,8 @@ namespace SAML2\XML\mdrpi;
 
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class for handling the mdrpi:RegistrationInfo element.
  *
@@ -33,7 +35,7 @@ class RegistrationInfo
      *
      * @var array
      */
-    public $RegistrationPolicy = array();
+    public $RegistrationPolicy = [];
 
     /**
      * Create/parse a mdrpi:RegistrationInfo element.

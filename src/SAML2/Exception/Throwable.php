@@ -2,6 +2,8 @@
 
 namespace SAML2\Exception;
 
+declare(strict_types=1);
+
 /**
  * Interface \SAML2\Exception\ExceptionInterface
  *

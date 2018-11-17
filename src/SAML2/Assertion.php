@@ -9,6 +9,8 @@ use SAML2\Utilities\Temporal;
 use SAML2\XML\Chunk;
 use SAML2\XML\saml\SubjectConfirmation;
 
+declare(strict_types=1);
+
 /**
  * Class representing a SAML 2 assertion.
  *
@@ -178,13 +180,13 @@ class Assertion implements SignedElement
      * the variable is as an associative array, indexed by attribute name
      * 
      * when parsing assertion, the variable will be:
-     * - <attribute name> => array(<Value1's xs type>|null, <xs type Value2>|null, ...)
+     * - <attribute name> => [(<Value1's xs type>|null, <xs type Value2>|null, ...]
      * array will always have the same size of the array of vaules in $attributes for the same <attribute name>
      *
      * when generating assertion, the varuable can be:
      * - null : backward compatibility
      * - <attribute name> => <xs type> : all values for the given attribute will have the same xs type
-     * - <attribute name> => array(<Value1's xs type>|null, <xs type Value2>|null, ...) : Nth value will have type of the Nth in the array
+     * - <attribute name> => [(<Value1's xs type>|null, <xs type Value2>|null, ...] : Nth value will have type of the Nth in the array
      * 
      * @var array multi-dimensional array of array
      */
@@ -260,11 +262,11 @@ class Assertion implements SignedElement
         $this->issueInstant = Temporal::getTime();
         $this->issuer = '';
         $this->authnInstant = Temporal::getTime();
-        $this->attributes = array();
+        $this->attributes = [];
         $this->nameFormat = Constants::NAMEFORMAT_UNSPECIFIED;
-        $this->certificates = array();
-        $this->AuthenticatingAuthority = array();
-        $this->SubjectConfirmation = array();
+        $this->certificates = [];
+        $this->AuthenticatingAuthority = [];
+        $this->SubjectConfirmation = [];
         $this->requiredEncAttributes = false;
 
         if ($xml === null) {
@@ -533,8 +535,8 @@ class Assertion implements SignedElement
             }
 
             if (!array_key_exists($name, $this->attributes)) {
-                $this->attributes[$name] = array();
-                $this->attributesValueTypes[$name] = array();
+                $this->attributes[$name] = [];
+                $this->attributesValueTypes[$name] = [];
             }
 
             $this->parseAttributeValue($attribute, $name);
@@ -545,7 +547,7 @@ class Assertion implements SignedElement
      * @param \DOMNode $attribute
      * @param string   $attributeName
      */
-    private function parseAttributeValue($attribute, $attributeName)
+    private function parseAttributeValue(\DOMNode $attribute, string $attributeName)
     {
         /** @var \DOMElement[] $values */
         $values = Utils::xpQuery($attribute, './saml_assertion:AttributeValue');
@@ -666,10 +668,8 @@ class Assertion implements SignedElement
      *
      * @param string $id The new identifier of this assertion.
      */
-    public function setId($id)
+    public function setId(string $id)
     {
-        assert(is_string($id));
-
         $this->id = $id;
     }
 
@@ -688,10 +688,8 @@ class Assertion implements SignedElement
      *
      * @param int $issueInstant The new issue timestamp of this assertion, as an UNIX timestamp.
      */
-    public function setIssueInstant($issueInstant)
+    public function setIssueInstant(int $issueInstant)
     {
-        assert(is_int($issueInstant));
-
         $this->issueInstant = $issueInstant;
     }
 
@@ -798,7 +796,7 @@ class Assertion implements SignedElement
      * @param XMLSecurityKey $key       The decryption key.
      * @param array          $blacklist Blacklisted decryption algorithms.
      */
-    public function decryptNameId(XMLSecurityKey $key, array $blacklist = array())
+    public function decryptNameId(XMLSecurityKey $key, array $blacklist = [])
     {
         if ($this->encryptedNameId === null) {
             /* No NameID to decrypt. */
@@ -830,7 +828,7 @@ class Assertion implements SignedElement
      * @param array $blacklist
      * @throws \Exception
      */
-    public function decryptAttributes(XMLSecurityKey $key, array $blacklist = array())
+    public function decryptAttributes(XMLSecurityKey $key, array $blacklist = [])
     {
         if (!$this->hasEncryptedAttributes()) {
             return;
@@ -866,7 +864,7 @@ class Assertion implements SignedElement
             }
 
             if (!array_key_exists($name, $this->attributes)) {
-                $this->attributes[$name] = array();
+                $this->attributes[$name] = [];
             }
 
             $this->parseAttributeValue($attribute, $name);
@@ -893,10 +891,8 @@ class Assertion implements SignedElement
      *
      * @param int|null $notBefore The earliest timestamp this assertion is valid.
      */
-    public function setNotBefore($notBefore)
+    public function setNotBefore(int $notBefore = null)
     {
-        assert(is_int($notBefore) || is_null($notBefore));
-
         $this->notBefore = $notBefore;
     }
 
@@ -920,10 +916,8 @@ class Assertion implements SignedElement
      *
      * @param int|null $notOnOrAfter The latest timestamp this assertion is valid.
      */
-    public function setNotOnOrAfter($notOnOrAfter)
+    public function setNotOnOrAfter(int $notOnOrAfter = null)
     {
-        assert(is_int($notOnOrAfter) || is_null($notOnOrAfter));
-
         $this->notOnOrAfter = $notOnOrAfter;
     }
 
@@ -932,7 +926,7 @@ class Assertion implements SignedElement
      *
      * @param boolean $ea true to encrypt attributes in the assertion.
      */
-    public function setEncryptedAttributes($ea)
+    public function setEncryptedAttributes(bool $ea)
     {
         $this->requiredEncAttributes = $ea;
     }
@@ -977,10 +971,8 @@ class Assertion implements SignedElement
      *
      * @param int|null $authnInstant Timestamp the user was authenticated, or NULL if we don't want an AuthnStatement.
      */
-    public function setAuthnInstant($authnInstant)
+    public function setAuthnInstant(int $authnInstant = null)
     {
-        assert(is_int($authnInstant) || is_null($authnInstant));
-
         $this->authnInstant = $authnInstant;
     }
 
@@ -1004,10 +996,8 @@ class Assertion implements SignedElement
      *
      * @param int|null $sessionNotOnOrAfter The latest timestamp this session is valid.
      */
-    public function setSessionNotOnOrAfter($sessionNotOnOrAfter)
+    public function setSessionNotOnOrAfter(int $sessionNotOnOrAfter = null)
     {
-        assert(is_int($sessionNotOnOrAfter) || is_null($sessionNotOnOrAfter));
-
         $this->sessionNotOnOrAfter = $sessionNotOnOrAfter;
     }
 
@@ -1029,10 +1019,8 @@ class Assertion implements SignedElement
      *
      * @param string|null $sessionIndex The session index of the user at the IdP.
      */
-    public function setSessionIndex($sessionIndex)
+    public function setSessionIndex(string $sessionIndex = null)
     {
-        assert(is_string($sessionIndex) || is_null($sessionIndex));
-
         $this->sessionIndex = $sessionIndex;
     }
 
@@ -1070,7 +1058,7 @@ class Assertion implements SignedElement
      * @deprecated use setAuthnContextClassRef
      * @param string|null $authnContext The authentication method.
      */
-    public function setAuthnContext($authnContext)
+    public function setAuthnContext(string $authnContext = null)
     {
         $this->setAuthnContextClassRef($authnContext);
     }
@@ -1096,10 +1084,8 @@ class Assertion implements SignedElement
      *
      * @param string|null $authnContextClassRef The authentication method.
      */
-    public function setAuthnContextClassRef($authnContextClassRef)
+    public function setAuthnContextClassRef(string $authnContextClassRef = null)
     {
-        assert(is_string($authnContextClassRef) || is_null($authnContextClassRef));
-
         $this->authnContextClassRef = $authnContextClassRef;
     }
 
@@ -1139,7 +1125,7 @@ class Assertion implements SignedElement
      * @param string $authnContextDeclRef
      * @throws \Exception
      */
-    public function setAuthnContextDeclRef($authnContextDeclRef)
+    public function setAuthnContextDeclRef(string $authnContextDeclRef)
     {
         if (!empty($this->authnContextDecl)) {
             throw new \Exception(
@@ -1242,10 +1228,8 @@ class Assertion implements SignedElement
      *
      * @param string $nameFormat The NameFormat used on all attributes.
      */
-    public function setAttributeNameFormat($nameFormat)
+    public function setAttributeNameFormat(string $nameFormat)
     {
-        assert(is_string($nameFormat));
-
         $this->nameFormat = $nameFormat;
     }
 

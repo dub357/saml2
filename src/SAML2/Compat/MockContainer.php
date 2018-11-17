@@ -2,6 +2,8 @@
 
 namespace SAML2\Compat;
 
+declare(strict_types=1);
+
 /**
  * Class \SAML2\Compat\MockContainer
  */
@@ -15,7 +17,7 @@ class MockContainer extends AbstractContainer
     /**
      * @var array
      */
-    private $debugMessages = array();
+    private $debugMessages = [];
 
     /**
      * @var string
@@ -67,7 +69,7 @@ class MockContainer extends AbstractContainer
      * @param string $type
      * @return void
      */
-    public function debugMessage($message, $type)
+    public function debugMessage(string $message, string $type)
     {
         $this->debugMessages[$type] = $message;
     }
@@ -79,7 +81,7 @@ class MockContainer extends AbstractContainer
      * @param array $data
      * @return void
      */
-    public function redirect($url, $data = [])
+    public function redirect(string $url, array $data = [])
     {
         $this->redirectUrl = $url;
         $this->redirectData = $data;
@@ -92,7 +94,7 @@ class MockContainer extends AbstractContainer
      * @param array $data
      * @return void
      */
-    public function postRedirect($url, $data = [])
+    public function postRedirect(string $url, array $data = [])
     {
         $this->postRedirectUrl = $url;
         $this->postRedirectData = $data;

@@ -2,6 +2,8 @@
 
 namespace SAML2\Configuration;
 
+declare(strict_types=1);
+
 /**
  * Interface \SAML2\Configuration\Queryable
  */
@@ -13,7 +15,7 @@ interface Queryable
      * @param string $key
      * @return bool
      */
-    public function has($key);
+    public function has(string $key);
 
     /**
      * Query to get the value in the configuration for the given key. If no value is present the default value is
@@ -24,5 +26,5 @@ interface Queryable
      *
      * @return mixed
      */
-    public function get($key, $default = null);
+    public function get(string $key, $default = null);
 }

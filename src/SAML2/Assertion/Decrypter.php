@@ -9,6 +9,8 @@ use SAML2\Configuration\IdentityProvider;
 use SAML2\Configuration\ServiceProvider;
 use SAML2\EncryptedAssertion;
 
+declare(strict_types=1);
+
 class Decrypter
 {
     /**

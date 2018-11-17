@@ -4,6 +4,8 @@ namespace SAML2\Response\Validation;
 
 use SAML2\Exception\InvalidArgumentException;
 
+declare(strict_types=1);
+
 /**
  * Simple Result object
  */
@@ -12,17 +14,13 @@ class Result
     /**
      * @var array
      */
-    private $errors = array();
+    private $errors = [];
 
     /**
-     * @param $message
+     * @param string $message
      */
-    public function addError($message)
+    public function addError(string $message)
     {
-        if (!is_string($message)) {
-            throw InvalidArgumentException::invalidType('string', $message);
-        }
-
         $this->errors[] = $message;
     }
 

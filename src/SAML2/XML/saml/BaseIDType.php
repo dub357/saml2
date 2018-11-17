@@ -8,9 +8,10 @@
 
 namespace SAML2\XML\saml;
 
-
 use SAML2\Constants;
 use SAML2\DOMDocumentFactory;
+
+declare(strict_types=1);
 
 abstract class BaseIDType
 {

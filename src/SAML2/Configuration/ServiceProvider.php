@@ -4,6 +4,8 @@ namespace SAML2\Configuration;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
+declare(strict_types=1);
+
 /**
  * Basic Configuration Wrapper
  */
@@ -50,7 +52,13 @@ class ServiceProvider extends ArrayAdapter implements
         return $this->get('sharedKey');
     }
 
-    public function getPrivateKey($name, $required = false)
+    /**
+     * @param string $name
+     * @param bool $required
+     * @throws \RuntimeException if $name was found to be ambiguous
+     * @return array|null
+     */
+    public function getPrivateKey(string $name, bool $required = false)
     {
         $privateKeys = $this->get('privateKeys');
         $key         = array_filter($privateKeys, function (PrivateKey $key) use ($name) {
@@ -76,6 +84,6 @@ class ServiceProvider extends ArrayAdapter implements
 
     public function getBlacklistedAlgorithms()
     {
-        return $this->get('blacklistedEncryptionAlgorithms', array(XMLSecurityKey::RSA_1_5));
+        return $this->get('blacklistedEncryptionAlgorithms', [XMLSecurityKey::RSA_1_5]);
     }
 }

@@ -5,6 +5,8 @@ namespace SAML2\Certificate;
 use SAML2\Certificate\Exception\InvalidKeyUsageException;
 use SAML2\Exception\InvalidArgumentException;
 
+declare(strict_types=1);
+
 /**
  * Simple DTO wrapper for (X509) keys. Implements ArrayAccess
  * for easier backwards compatibility.
@@ -18,7 +20,7 @@ class Key implements \ArrayAccess
     /**
      * @var array
      */
-    protected $keyData = array();
+    protected $keyData = [];
 
     /**
      * @param array $keyData
@@ -37,7 +39,7 @@ class Key implements \ArrayAccess
      * @param  string $usage
      * @return bool
      */
-    public function canBeUsedFor($usage)
+    public function canBeUsedFor(string $usage)
     {
         if (!in_array($usage, static::getValidKeyUsages(), true)) {
             throw new InvalidKeyUsageException($usage);
@@ -52,48 +54,42 @@ class Key implements \ArrayAccess
      */
     public static function getValidKeyUsages()
     {
-        return array(
+        return [
             self::USAGE_ENCRYPTION,
             self::USAGE_SIGNING
-        );
+        ];
     }
 
-    public function offsetExists($offset)
+    /**
+     * @param string $offset
+     */
+    public function offsetExists(string $offset)
     {
         return array_key_exists($offset, $this->keyData);
     }
 
-    public function offsetGet($offset)
+    /**
+     * @param string $offset
+     */
+    public function offsetGet(string $offset)
     {
-        $this->assertIsString($offset);
-
         return $this->keyData[$offset];
     }
 
-    public function offsetSet($offset, $value)
+    /**
+     * @param string $offset
+     * @param mixed $value
+     */
+    public function offsetSet(string $offset, $value)
     {
-        $this->assertIsString($offset);
-
         $this->keyData[$offset] = $value;
     }
 
-    public function offsetUnset($offset)
-    {
-        $this->assertIsString($offset);
-
-        unset($this->keyData[$offset]);
-    }
-
     /**
-     * Asserts that the parameter is of type string
-     * @param mixed $test
-     *
-     * @throws \Exception
+     * @param string $offset
      */
-    protected function assertIsString($test)
+    public function offsetUnset(string $offset)
     {
-        if (!is_string($test)) {
-            throw InvalidArgumentException::invalidType('string', $test);
-        }
+        unset($this->keyData[$offset]);
     }
 }

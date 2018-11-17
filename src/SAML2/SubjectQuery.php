@@ -2,6 +2,8 @@
 
 namespace SAML2;
 
+declare(strict_types=1);
+
 /**
  * Base class for SAML 2 subject query messages.
  *
@@ -29,7 +31,7 @@ abstract class SubjectQuery extends Request
      * @param string          $tagName The tag name of the root element.
      * @param \DOMElement|null $xml     The input message.
      */
-    protected function __construct($tagName, \DOMElement $xml = null)
+    protected function __construct(string $tagName, \DOMElement $xml = null)
     {
         parent::__construct($tagName, $xml);
 

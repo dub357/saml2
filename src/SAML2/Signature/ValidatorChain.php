@@ -6,6 +6,8 @@ use Psr\Log\LoggerInterface;
 use SAML2\Configuration\CertificateProvider;
 use SAML2\SignedElement;
 
+declare(strict_types=1);
+
 /**
  * Allows for validation of a signature trying different validators till a validator is found
  * that can validate the signature.
@@ -22,7 +24,7 @@ class ValidatorChain implements ValidatorInterface
     /**
      * @var  \SAML2\Signature\ChainedValidator[]
      */
-    private $validators = array();
+    private $validators = [];
 
     /**
      * @param \Psr\Log\LoggerInterface           $logger

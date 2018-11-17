@@ -4,6 +4,8 @@ namespace SAML2;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
+declare(strict_types=1);
+
 /**
  * Class which implements the HTTP-Redirect binding.
  *
@@ -136,13 +138,13 @@ class HTTPRedirect extends Binding
             throw new \Exception('Missing signature algorithm.');
         }
 
-        $signData = array(
+        $signData = [
             'Signature' => $data['Signature'],
             'SigAlg'    => $data['SigAlg'],
             'Query'     => $data['SignedQuery'],
-        );
+        ];
 
-        $message->addValidator(array(get_class($this), 'validateSignature'), $signData);
+        $message->addValidator([get_class($this), 'validateSignature'], $signData);
 
         return $message;
     }
@@ -163,7 +165,7 @@ class HTTPRedirect extends Binding
          * to the raw (urlencoded) values. This is required because different software
          * can urlencode to different values.
          */
-        $data = array();
+        $data = [];
         $relayState = '';
         $sigAlg = '';
         $sigQuery = '';

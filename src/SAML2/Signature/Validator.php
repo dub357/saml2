@@ -8,6 +8,8 @@ use SAML2\Certificate\KeyLoader;
 use SAML2\Configuration\CertificateProvider;
 use SAML2\SignedElement;
 
+declare(strict_types=1);
+
 /**
  * Signature Validator.
  */
@@ -30,10 +32,10 @@ class Validator
         // should be DI
         $validator = new ValidatorChain(
             $this->logger,
-            array(
+            [
                 new PublicKeyValidator($this->logger, new KeyLoader()),
                 new FingerprintValidator($this->logger, new FingerprintLoader())
-            )
+            ]
         );
 
         return $validator->hasValidSignature($signedElement, $configuration);

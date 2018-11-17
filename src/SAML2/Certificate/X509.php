@@ -2,6 +2,8 @@
 
 namespace SAML2\Certificate;
 
+declare(strict_types=1);
+
 /**
  * Specific Certificate Key.
  */
@@ -12,14 +14,17 @@ class X509 extends Key
      */
     private $fingerprint;
 
-    public static function createFromCertificateData($certificateContents)
+    /**
+     * @param string $certificateContents
+     */
+    public static function createFromCertificateData(string $certificateContents)
     {
-        $data = array(
+        $data = [
             'encryption'      => true,
             'signing'         => true,
             'type'            => 'X509Certificate',
             'X509Certificate' => $certificateContents
-        );
+        ];
 
         return new self($data);
     }
@@ -27,7 +32,7 @@ class X509 extends Key
     /**
      * {@inheritdoc} Best place to ensure the logic is encapsulated in a single place
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet(string $offset, $value)
     {
         if ($offset === 'X509Certificate') {
             $value = preg_replace('~\s+~', '', $value);

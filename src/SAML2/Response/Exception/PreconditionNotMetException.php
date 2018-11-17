@@ -4,6 +4,8 @@ namespace SAML2\Response\Exception;
 
 use SAML2\Response\Validation\Result;
 
+declare(strict_types=1);
+
 /**
  * Named exception to indicate that the preconditions for processing the SAML response have not been met.
  */

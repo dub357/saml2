@@ -8,6 +8,8 @@ use SAML2\Utils;
 use SAML2\XML\Chunk;
 use SAML2\XML\ds\KeyInfo;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 SubjectConfirmationData element.
  *
@@ -58,7 +60,7 @@ class SubjectConfirmationData
      *
      * @var (\SAML2\XML\ds\KeyInfo|\SAML2\XML\Chunk)[]
      */
-    public $info = array();
+    public $info = [];
 
     /**
      * Initialize (and parse) a SubjectConfirmationData element.

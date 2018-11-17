@@ -5,6 +5,8 @@ namespace SAML2\XML\md;
 use SAML2\Constants;
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 metadata AdditionalMetadataLocation element.
  *

@@ -8,6 +8,8 @@ use SAML2\Configuration\PrivateKey as PrivateKeyConfiguration;
 use SAML2\Utilities\ArrayCollection;
 use SAML2\Utilities\File;
 
+declare(strict_types=1);
+
 class PrivateKeyLoader
 {
     /**
@@ -67,7 +69,7 @@ class PrivateKeyLoader
      */
     private function convertPrivateKeyToRsaKey(PrivateKey $privateKey)
     {
-        $key        = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type' => 'private'));
+        $key        = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, ['type' => 'private']);
         $passphrase = $privateKey->getPassphrase();
         if ($passphrase) {
             $key->passphrase = $passphrase;

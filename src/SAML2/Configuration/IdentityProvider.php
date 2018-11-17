@@ -2,6 +2,8 @@
 
 namespace SAML2\Configuration;
 
+declare(strict_types=1);
+
 /**
  * Basic configuration wrapper
  */
@@ -48,7 +50,13 @@ class IdentityProvider extends ArrayAdapter implements
         return $this->get('base64EncodedAttributes');
     }
 
-    public function getPrivateKey($name, $required = false)
+    /**
+     * @param string $name
+     * @param bool $required
+     * @throws \RuntimeException when $name is ambiguous
+     * @return array|null
+     */
+    public function getPrivateKey(string $name, bool $required = false)
     {
         $privateKeys = $this->get('privateKeys');
         $key = array_filter($privateKeys, function (PrivateKey $key) use ($name) {

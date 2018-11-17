@@ -8,6 +8,8 @@ use SAML2\Configuration\ServiceProvider;
 use SAML2\Configuration\ServiceProviderAware;
 use SAML2\XML\saml\SubjectConfirmation;
 
+declare(strict_types=1);
+
 class SubjectConfirmationValidator
 {
     /**

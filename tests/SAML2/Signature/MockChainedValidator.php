@@ -27,7 +27,7 @@ class MockChainedValidator extends AbstractChainedValidator
      * @param bool $canValidate the return value of the canValidate call
      * @param bool $isValid     the return value of the isValid hasValidSignature call
      */
-    public function __construct($canValidate, $isValid)
+    public function __construct(bool $canValidate, bool $isValid)
     {
         $this->canValidate = $canValidate;
         $this->isValid = $isValid;

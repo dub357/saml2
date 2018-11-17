@@ -5,6 +5,8 @@ namespace SAML2\XML\ds;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SAML2\XML\Chunk;
 
+declare(strict_types=1);
+
 /**
  * Class representing a ds:KeyInfo element.
  *
@@ -27,7 +29,7 @@ class KeyInfo
      *
      * @var (\SAML2\XML\Chunk|\SAML2\XML\ds\KeyName|\SAML2\XML\ds\X509Data)[]
      */
-    public $info = array();
+    public $info = [];
 
     /**
      * Initialize a KeyInfo element.

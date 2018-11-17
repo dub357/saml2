@@ -4,6 +4,8 @@ namespace SAML2\XML\md;
 
 use SAML2\Constants;
 
+declare(strict_types=1);
+
 /**
  * Class representing SAML 2 EndpointType.
  *
@@ -37,7 +39,7 @@ class EndpointType
      *
      * @var array
      */
-    private $attributes = array();
+    private $attributes = [];
 
     /**
      * Initialize an EndpointType.
@@ -70,11 +72,11 @@ class EndpointType
                 continue; /* Not namespace-qualified -- skip. */
             }
             $fullName = '{' . $a->namespaceURI . '}' . $a->localName;
-            $this->attributes[$fullName] = array(
+            $this->attributes[$fullName] = [
                 'qualifiedName' => $a->nodeName,
                 'namespaceURI' => $a->namespaceURI,
                 'value' => $a->value,
-            );
+            ];
         }
     }
 
@@ -85,11 +87,8 @@ class EndpointType
      * @param  string  $localName    The local name.
      * @return boolean true if the attribute exists, false if not.
      */
-    public function hasAttributeNS($namespaceURI, $localName)
+    public function hasAttributeNS(string $namespaceURI, string $localName)
     {
-        assert(is_string($namespaceURI));
-        assert(is_string($localName));
-
         $fullName = '{' . $namespaceURI . '}' . $localName;
 
         return isset($this->attributes[$fullName]);
@@ -102,11 +101,8 @@ class EndpointType
      * @param  string $localName    The local name.
      * @return string The value of the attribute, or an empty string if the attribute does not exist.
      */
-    public function getAttributeNS($namespaceURI, $localName)
+    public function getAttributeNS(string $namespaceURI, string $localName)
     {
-        assert(is_string($namespaceURI));
-        assert(is_string($localName));
-
         $fullName = '{' . $namespaceURI . '}' . $localName;
         if (!isset($this->attributes[$fullName])) {
             return '';
@@ -123,11 +119,8 @@ class EndpointType
      * @param string $value         The attribute value.
      * @throws \Exception
      */
-    public function setAttributeNS($namespaceURI, $qualifiedName, $value)
+    public function setAttributeNS(string $namespaceURI, string $qualifiedName, string $value)
     {
-        assert(is_string($namespaceURI));
-        assert(is_string($qualifiedName));
-
         $name = explode(':', $qualifiedName, 2);
         if (count($name) < 2) {
             throw new \Exception('Not a qualified name.');
@@ -135,11 +128,11 @@ class EndpointType
         $localName = $name[1];
 
         $fullName = '{' . $namespaceURI . '}' . $localName;
-        $this->attributes[$fullName] = array(
+        $this->attributes[$fullName] = [
             'qualifiedName' => $qualifiedName,
             'namespaceURI' => $namespaceURI,
             'value' => $value,
-        );
+        ];
     }
 
     /**
@@ -148,11 +141,8 @@ class EndpointType
      * @param string $namespaceURI The namespace URI.
      * @param string $localName    The local name.
      */
-    public function removeAttributeNS($namespaceURI, $localName)
+    public function removeAttributeNS(string $namespaceURI, string $localName)
     {
-        assert(is_string($namespaceURI));
-        assert(is_string($localName));
-
         $fullName = '{' . $namespaceURI . '}' . $localName;
         unset($this->attributes[$fullName]);
     }
@@ -164,9 +154,8 @@ class EndpointType
      * @param string     $name   The name of the element we should create.
      * @return \DOMElement
      */
-    public function toXML(\DOMElement $parent, $name)
+    public function toXML(\DOMElement $parent, string $name)
     {
-        assert(is_string($name));
         assert(is_string($this->Binding));
         assert(is_string($this->Location));
         assert(is_null($this->ResponseLocation) || is_string($this->ResponseLocation));

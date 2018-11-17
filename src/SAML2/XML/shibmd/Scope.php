@@ -4,6 +4,8 @@ namespace SAML2\XML\shibmd;
 
 use SAML2\Utils;
 
+declare(strict_types=1);
+
 /**
  * Class which represents the Scope element found in Shibboleth metadata.
  *

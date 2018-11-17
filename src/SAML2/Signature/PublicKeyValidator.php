@@ -9,6 +9,8 @@ use SAML2\Certificate\X509;
 use SAML2\Configuration\CertificateProvider;
 use SAML2\SignedElement;
 
+declare(strict_types=1);
+
 class PublicKeyValidator extends AbstractChainedValidator
 {
     /**

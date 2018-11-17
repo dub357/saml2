@@ -7,6 +7,8 @@ use SAML2\Assertion\Validation\SubjectConfirmationConstraintValidator;
 use SAML2\Utilities\Temporal;
 use SAML2\XML\saml\SubjectConfirmation;
 
+declare(strict_types=1);
+
 class SubjectConfirmationNotOnOrAfter implements
     SubjectConfirmationConstraintValidator
 {

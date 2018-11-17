@@ -33,7 +33,7 @@ AUTHNREQUEST
 
         $unsignedMessage = Message::fromXML($authnRequest->documentElement);
         $unsignedMessage->setSignatureKey($privateKey);
-        $unsignedMessage->setCertificates(array(CertificatesMock::PUBLIC_KEY_PEM));
+        $unsignedMessage->setCertificates([CertificatesMock::PUBLIC_KEY_PEM]);
 
         $signedMessage = Message::fromXML($unsignedMessage->toSignedXML());
 
@@ -159,7 +159,7 @@ AUTHNREQUEST
 
         $unsignedMessage = Message::fromXML($response->documentElement);
         $unsignedMessage->setSignatureKey($privateKey);
-        $unsignedMessage->setCertificates(array(CertificatesMock::PUBLIC_KEY_PEM));
+        $unsignedMessage->setCertificates([CertificatesMock::PUBLIC_KEY_PEM]);
 
         $signedMessage = Message::fromXML($unsignedMessage->toSignedXML());
 
