@@ -9,7 +9,6 @@ use SAML2\Utilities\Temporal;
 use \SimpleSAML\Configuration;
 use \SimpleSAML\Metadata\MetaDataStorageHandler;
 use \SimpleSAML\Store;
-use \SimpleSAML\Utilities;
 
 /**
  * Class which implements the HTTP-Artifact binding.
@@ -40,7 +39,7 @@ class HTTPArtifact extends Binding
             throw new \Exception('Unable to send artifact without a datastore configured.');
         }
 
-        $generatedId = pack('H*', ((string) Utilities::stringToHex(Utilities::generateRandomBytes(20))));
+        $generatedId = pack('H*', bin2hex(openssl_random_pseudo_bytes(20)));
         $artifact = base64_encode("\x00\x04\x00\x00" . sha1($message->getIssuer(), true) . $generatedId) ;
         $artifactData = $message->toUnsignedXML();
         $artifactDataString = $artifactData->ownerDocument->saveXML($artifactData);
@@ -55,7 +54,7 @@ class HTTPArtifact extends Binding
             $params['RelayState'] = $relayState;
         }
 
-        return Utilities::addURLparameter($message->getDestination(), $params);
+        return \SimpleSAML\Utils\HTTP::addURLparameter($message->getDestination(), $params);
     }
 
     /**

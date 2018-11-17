@@ -104,8 +104,7 @@ XML;
         $assertion->setIssuer('testIssuer');
         $assertion->setValidAudiences(['audience1', 'audience2']);
 
-        // deprecated function
-        $this->assertNull($assertion->getAuthnContext());
+        $this->assertNull($assertion->getAuthnContextClassRef());
 
         $assertion->setAuthnContext('someAuthnContext');
         $assertion->setAuthnContextDeclRef('/relative/path/to/document.xml');
@@ -289,8 +288,7 @@ XML;
 
         $this->assertEquals('someAuthnContext', $assertion->getAuthnContextClassRef());
 
-        // deprecated function
-        $this->assertEquals('someAuthnContext', $assertion->getAuthnContext());
+        $this->assertEquals('someAuthnContext', $assertion->getAuthnContextClassRef());
     }
 
     /**
@@ -440,8 +438,7 @@ XML;
         }
         $this->assertNotEmpty($e);
 
-        // deprecated function
-        $this->assertEquals('/relative/path/to/document.xml', $assertion->getAuthnContext());
+        $this->assertEquals('/relative/path/to/document.xml', $assertion->getAuthnContextClassRef());
     }
 
     public function testMustHaveClassRefOrDeclOrDeclRef()
