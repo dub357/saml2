@@ -31,7 +31,6 @@ function SAML2_autoload(string $className)
         $newName = '\\'.str_replace('_', '\\', $className);
         class_alias($newName, $oldName);
     }
-
 }
 
 spl_autoload_register('SAML2_autoload');
