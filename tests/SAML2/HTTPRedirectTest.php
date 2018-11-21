@@ -167,6 +167,7 @@ class HTTPRedirectTest extends PHPUnit_Framework_TestCase
     {
         $request = new AuthnRequest();
         $hr = new HTTPRedirect();
+        $hr->setDestination('https://idp.example.org/');
         $hr->send($request);
     }
 
